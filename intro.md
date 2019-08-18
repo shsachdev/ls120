@@ -27,4 +27,16 @@ Individual objects will contain  different information from other objects, yet t
 ```
 As you can see, everything we've been using, from strings to integers, are in fact objects, which are instantiated from a class. We'll dig deeper into this very soon.
 
-Ruby defines the attributes and behaviors of its objects in `classes`. 
+Ruby defines the attributes and behaviors of its objects in `classes`.
+
+Here is an example:
+
+```ruby
+
+class GoodDog
+end
+
+sparky = GoodDog.new
+
+```
+Above, we have created an instance of our ```GoodDog``` class and stored it in the variable ```sparky```. 
