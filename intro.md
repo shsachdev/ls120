@@ -24,4 +24,7 @@ Individual objects will contain  different information from other objects, yet t
 
 "world".class => string
 
-``` 
+```
+As you can see, everything we've been using, from strings to integers, are in fact objects, which are instantiated from a class. We'll dig deeper into this very soon.
+
+Ruby defines the attributes and behaviors of its objects in `classes`. 
