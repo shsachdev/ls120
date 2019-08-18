@@ -39,4 +39,8 @@ end
 sparky = GoodDog.new
 
 ```
-Above, we have created an instance of our ```GoodDog``` class and stored it in the variable ```sparky```. 
+Above, we have created an instance of our ```GoodDog``` class and stored it in the variable ```sparky```.
+
+We now have an object. We say that ```sparky``` is an object or instance of class ```GoodDog```.
+
+This entire workflow of creating a new object or instance from a class is called *instantiation*.
