@@ -43,4 +43,4 @@ Above, we have created an instance of our ```GoodDog``` class and stored it in t
 
 We now have an object. We say that ```sparky``` is an object or instance of class ```GoodDog```.
 
-This entire workflow of creating a new object or instance from a class is called *instantiation*.
+This entire workflow of creating a new object or instance from a class is called ***instantiation***.
