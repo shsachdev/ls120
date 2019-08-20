@@ -3,12 +3,12 @@ class GoodDog
     @name = name
   end
 
-  def get_name
+  def name
     @name
   end
 
-  def set_name=(name)
-    @name = name
+  def name=(n)
+    @name = n
   end
 
   def speak
@@ -35,6 +35,6 @@ puts fido.speak # prints out "Arf!"
 # All objects of the same class have the same behaviors, though they contain different states;
 # here, the different state is the name.
 
-puts sparky.get_name
-sparky.set_name = "Spartacus"
-puts sparky.get_name
+puts sparky.name # different method to the one that is being invoked on line 39
+sparky.name = "Spartacus" # this is syntaxtical sugar for the method name=(n) where n is a string.
+puts sparky.name
