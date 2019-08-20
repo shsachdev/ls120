@@ -2,6 +2,10 @@ class GoodDog
   def initialize(name) # initialize method takes a parameter called name.
     @name = name
   end
+
+  def speak
+    "#{@name} says Arf!"
+  end
 end
 
 # You can pass arguments into the initiliaze method through the new method.
@@ -13,4 +17,12 @@ sparky = GoodDog.new("Sparky")
 # we then set the instance variable @name to name, which results in assigning the string "Sparky"
 # to the @name instance variable.
 
-#
+# Instance variables are responsible for keeping track of information about the state of an object.
+
+sparky.speak
+
+fido = GoodDog.new("Fido")
+puts fido.speak # prints out "Arf!"
+
+# All objects of the same class have the same behaviors, though they contain different states;
+# here, the different state is the name.
