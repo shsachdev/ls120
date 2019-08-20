@@ -1,6 +1,6 @@
 class MyCar
   attr_accessor :color
-  attr_reader :year
+  attr_reader :year # only allows you to view the year of your car, not modify it.
 
   def initialize(y, c, m)
     @year = y
@@ -24,11 +24,15 @@ class MyCar
   def current_speed
     puts "The current speed is #{@current_speed} mph."
   end
+
+  def spray_paint(color)
+    self.color = color
+    puts "Your new #{color} paint job looks great!"
+  end
 end
 
-toyota = MyCar.new("2003", "red", "X8")
+toyota = MyCar.new(2006, "red", "X8")
 
 puts toyota.color
 puts toyota.year
-toyota.color = "Blue"
-puts toyota.color
+toyota.spray_paint("black")
