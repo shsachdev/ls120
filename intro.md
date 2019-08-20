@@ -44,3 +44,7 @@ Above, we have created an instance of our ```GoodDog``` class and stored it in t
 We now have an object. We say that ```sparky``` is an object or instance of class ```GoodDog```.
 
 This entire workflow of creating a new object or instance from a class is called **instantiation**.
+
+We use classes to create objects.
+
+When defining a class, we typically focus on two things: states and behaviors. States track attributes for individual objects. Behaviors are what objects are capable of doing.
