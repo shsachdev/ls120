@@ -48,3 +48,5 @@ This entire workflow of creating a new object or instance from a class is called
 We use classes to create objects.
 
 When defining a class, we typically focus on two things: states and behaviors. States track attributes for individual objects. Behaviors are what objects are capable of doing.
+
+Instance methods defined in a class are available to objects (or instances) of that class.
