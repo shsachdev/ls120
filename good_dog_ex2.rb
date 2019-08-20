@@ -3,6 +3,14 @@ class GoodDog
     @name = name
   end
 
+  def get_name
+    @name
+  end
+
+  def set_name=(name)
+    @name = name
+  end
+
   def speak
     "#{@name} says Arf!"
   end
@@ -26,3 +34,7 @@ puts fido.speak # prints out "Arf!"
 
 # All objects of the same class have the same behaviors, though they contain different states;
 # here, the different state is the name.
+
+puts sparky.get_name
+sparky.set_name = "Spartacus"
+puts sparky.get_name
