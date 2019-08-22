@@ -57,8 +57,10 @@ Instance methods defined in a class are available to objects (or instances) of t
 We can access class variables (denoted with @@ prepended to variable name) from within an instance method
 (initialize is an instance method).
 
+An instance method applies to an instance of the class (i.e. an object) whereas a class method applies to the class itself.
+
 **Constants**
 
 When creating classes there may also be certain variables that you never want to change.
 
-You can do this by creating what are called **constants**. 
+You can do this by creating what are called **constants**.
