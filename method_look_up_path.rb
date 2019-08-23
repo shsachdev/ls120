@@ -24,9 +24,10 @@ class Animal
   end
 end
 
-puts "---Animal method lookup---"
-puts Animal.ancestors
+class GoodDog < Animal
+  include Swimmable
+  include Climbable
+end
 
-fido = Animal.new
-fido.speak #=> I'm an animal, and I speak!
-fido.walk #=> I'm walking.
+puts "---GoodDog method lookup---"
+puts GoodDog.ancestors # module seems to take precedence over superclass.
