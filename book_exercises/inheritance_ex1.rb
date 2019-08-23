@@ -1,3 +1,9 @@
+module Parkable
+  def park
+    puts "I can park in tight spaces"
+  end
+end
+
 class Vehicle
   @@number_of_vehicles = 0
 
@@ -15,6 +21,7 @@ class Vehicle
 end
 
 class MyCar < Vehicle
+  include Parkable
   NUMBER_OF_DOORS = 4
 end
 
