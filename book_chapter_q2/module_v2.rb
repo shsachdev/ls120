@@ -26,7 +26,7 @@ end
 
 class GoodDog < Animal
   include Swimmable
-  include Climbable # this module is examined before swimmable in the method lookup path. 
+  include Climbable # this module is examined before swimmable in the method lookup path.
 end
 
 # puts "---Animal method lookup---"
