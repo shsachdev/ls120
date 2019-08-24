@@ -2,6 +2,10 @@ class MyCar
   attr_accessor :color, :model, :current_speed
   attr_reader :year
 
+  def self.gas_mileage(gallon, miles)
+    puts "#{miles / gallons} miles per gallon of gas."
+  end
+
   def initialize(y, c, m)
     @year = y
     @color = c
@@ -23,6 +27,10 @@ class MyCar
 
   def spray_paint(c)
     self.color = c
+  end
+
+  def to_s
+    "My year is #{year}, I am #{color}, and I am a #{model}"
   end
 end
 
