@@ -16,10 +16,10 @@ module Mammal
   end
 end
 
-# buddy = Mammal::Dog.new
-# kitty = Mammal::Cat.new
-# buddy.speak("Arf!")  # => "Arf!"
-# kitty.say_name("kitty") # => "kitty"
+buddy = Mammal::Dog.new
+kitty = Mammal::Cat.new
+buddy.speak("Arf!")  # => "Arf!"
+kitty.say_name("kitty") # => "kitty"
 
 
 value = Mammal.some_out_of_place_method(4)

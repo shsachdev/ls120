@@ -5,7 +5,17 @@ class GoodDog
 
   def initialize(n, a)
     self.name = n  # calling the setter method
-    self.age = a * DOG_YEARS #calling the setter method
+    self.age = a #calling the setter method
+  end
+
+  def public_disclosure
+    "#{self.name} in human years is #{human_years}"
+  end
+
+  private
+
+  def human_years
+    age * DOG_YEARS
   end
 
   def to_s
@@ -15,8 +25,6 @@ end
 
 sparky = GoodDog.new("Sparky", 4)
 
-puts sparky.age #=> 28
+puts sparky.age #=> 4
 
-puts sparky #=> #<GoodDog:0x007fb10b0456c8> # invokes to_s
-
-# but, if we define our own custom to_s method within the class, that one will be invoked instead.
+puts sparky.public_disclosure
