@@ -24,11 +24,8 @@ class MyCar
   def spray_paint(c)
     self.color = c
   end
-
-  def self.what_am_i
-    "I'm a GoodDog class!"
-  end
 end
+
 
 hyundai = MyCar.new(2019, "black", "SS")
 

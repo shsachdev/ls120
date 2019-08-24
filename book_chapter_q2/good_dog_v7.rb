@@ -20,7 +20,13 @@ class GoodDog
   def info
     "#{self.name} weighs #{self.weight} and is #{self.height} tall."
   end
+
+  def self.what_am_i
+    "I'm a GoodDog class!"
+  end
 end
+
+p GoodDog.what_am_i
 
 fido = GoodDog.new("Fido")
 puts fido.speak
