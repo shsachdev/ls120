@@ -24,5 +24,17 @@ class Animal
   end
 end
 
-puts "---Animal method lookup---"
-puts Animal.ancestors
+class GoodDog < Animal
+  include Swimmable
+  include Climbable # this module is examined before swimmable in the method lookup path. 
+end
+
+# puts "---Animal method lookup---"
+# puts Animal.ancestors
+#
+# fido = Animal.new
+# fido.speak
+# fido.walk
+
+puts "---GoodDog method lookup---"
+puts GoodDog.ancestors
