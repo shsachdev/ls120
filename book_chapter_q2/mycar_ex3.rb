@@ -1,4 +1,4 @@
-class MyCar
+class Vehicle
   attr_accessor :color, :model, :current_speed
   attr_reader :year
 
@@ -34,16 +34,14 @@ class MyCar
   end
 end
 
+class MyCar < Vehicle
+  LICENSE_PLATE = "FT1209KI"
+end
 
-hyundai = MyCar.new(2019, "black", "SS")
+class MyTruck < Vehicle
+  LICENSE_PLATE = "TR1209KI"
+end
 
-p hyundai.year
-p hyundai.color
-p hyundai.model
-p hyundai.current_speed
+toyota = MyCar.new(1997, "red", "A3")
 
-hyundai.speed_up(55555555)
-p hyundai.current_speed
-
-hyundai.spray_paint("red")
-p hyundai.color
+p toyota.year
