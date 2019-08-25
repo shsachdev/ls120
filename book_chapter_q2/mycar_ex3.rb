@@ -1,3 +1,9 @@
+module Parkable
+  def park_in_tight_spaces
+    true
+  end
+end
+
 class Vehicle
   attr_accessor :color, :model, :current_speed
   attr_reader :year
@@ -6,6 +12,16 @@ class Vehicle
 
   def self.gas_mileage(gallon, miles)
     puts "#{miles / gallons} miles per gallon of gas."
+  end
+
+  def age
+    age_calculator
+  end
+
+  private
+
+  def age_calculator
+    Time.now.year - self.year
   end
 
   def initialize(y, c, m)
@@ -42,6 +58,7 @@ class Vehicle
 end
 
 class MyCar < Vehicle
+  include Parkable
   LICENSE_PLATE = "FT1209KI"
 end
 
@@ -49,6 +66,6 @@ class MyTruck < Vehicle
   LICENSE_PLATE = "TR1209KI"
 end
 
-toyota = MyCar.new(1997, "red", "A3")
+laguna = MyCar.new(2000,"purple", "SS12")
 
-p toyota.year
+p laguna.age
