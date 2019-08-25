@@ -1,7 +1,12 @@
 class Cat
-  def initialize
-    puts "I'm a cat!"
+  def initialize(name)
+    @name = name
+  end
+
+  def greet
+    puts "Hello! My name is #{@name}!"
   end
 end
 
-kitty = Cat.new
+kitty = Cat.new("Sophie")
+kitty.greet
