@@ -2,7 +2,7 @@ class Person
   attr_writer :secret
 
   def compare_secret(other_person)
-    false unless other_person.secret == self.secret
+    other_person.secret == self.secret
   end
 
   protected
