@@ -1,5 +1,5 @@
 class Cat
-  attr_reader :name
+  attr_accessor :name
 
   def initialize(name)
     @name = name
@@ -11,4 +11,6 @@ class Cat
 end
 
 kitty = Cat.new("Sophie")
+kitty.greet
+kitty.name = "Luna"
 kitty.greet
