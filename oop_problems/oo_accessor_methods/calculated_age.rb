@@ -4,7 +4,7 @@ class Person
   end
 
   def age=(a)
-    age = a * 2
+    @age = a * 2
   end
 end
 
