@@ -11,22 +11,16 @@ class Banner
 
   def empty_line
     num = @message.chars.size
-    blank_space = num.times do
-      puts " "
-    end
-    "|" + blank_space + "|"
+    puts("|" + " "*num +  "|")
   end
 
   def horizontal_rule
     num = @message.chars.size
-    str = num.times do
-      "-"
-    end
-    "+" +  + "+"
+    puts ("+" + "-"*num + "+")
   end
 
   def message_line
-    "| #{@message} |"
+    puts "|#{@message}|"
   end
 end
 
@@ -34,5 +28,5 @@ end
 banner = Banner.new('To boldly go where no one has gone before.')
 puts banner
 
-banner = Banner.new('')
-puts banner
+# banner = Banner.new('')
+# puts banner
