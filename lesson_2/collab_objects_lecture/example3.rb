@@ -24,6 +24,8 @@ bob.pets << kitty
 
 bob.pets << bud
 
+# collaborator objects can be any type: strings, arrays, hash or even custom objects.
+
 bob.pets
 
 bob.pets.each do |pet|
