@@ -1,4 +1,21 @@
+class Pet
+  def initialize(animal, name)
+    @animal = animal
+    @name = name
+  end
+end
 
+class Owner
+  attr_reader :name, :number_of_pets
+
+  def initialize(owner_name)
+    @name = owner_name
+  end
+end
+
+class Shelter
+
+end
 
 
 
