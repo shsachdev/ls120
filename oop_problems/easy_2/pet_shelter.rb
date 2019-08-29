@@ -1,4 +1,6 @@
 class Pet
+  attr_accessor :name, :animal
+
   def initialize(animal, name)
     @animal = animal
     @name = name
@@ -6,19 +8,34 @@ class Pet
 end
 
 class Owner
-  attr_reader :name, :number_of_pets
+  attr_accessor :name
 
   def initialize(owner_name)
     @name = owner_name
+    @number_of_pets = []
+  end
+
+  def number_of_pets
+    @number_of_pets.size
+  end
+
+  def add_pet(pet)
+    @number_of_pets << pet
   end
 end
 
 class Shelter
+  attr_accessor :print_adoptions
 
+  def initialize
+    @print_adoptions = []
+  end
+
+  def adopt(owner, pet)
+    owner.add_pet(pet.name)
+    @print_adoptions << pet.name
+  end
 end
-
-
-
 
 
 butterscotch = Pet.new('cat', 'Butterscotch')
