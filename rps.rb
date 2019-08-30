@@ -1,10 +1,28 @@
 class Player
-  def initialize
-    # maybe a "name"? what about a "move"?
+  attr_accessor :move
+
+  def initialize(player_type = :human)
+    @player_type = player_type
+    @move = nil
   end
 
   def choose
+    if human?
+      choice = nil
+      loop do
+        puts "Please choose rock, paper, or scissors:"
+        choice = gets.chomp
+        break if ["rock", "paper", "scissors"].include?(choice)
+        puts "Sorry, invalid."
+      end
+      self.move = choice
+    else
+      self.move = ["rock", "paper", "scissors"].sample
+    end
+  end
 
+  def human?
+    @player_type == :human
   end
 end
 
@@ -32,7 +50,15 @@ class RPSGame
 
   def initialize
     @human = Player.new
-    @computer = Player.new
+    @computer = Player.new(:computer)
+  end
+
+  def display_welcome_message
+    puts "Welcome to Rock, Paper, Scissors!"
+  end
+
+  def display_goodbye_message
+    puts "Thanks for playing Rock, Paper, Scissors. Good bye!"
   end
 
   def play
@@ -43,3 +69,5 @@ class RPSGame
     display_goodbye_message
   end
 end
+
+RPSGame.new.play
