@@ -26,24 +26,6 @@ class Player
   end
 end
 
-class Move
-  def initialize
-    # seems like we need something to keep track
-    # of the choice... a move object can be "paper", "rock", or "scissors"
-  end
-end
-
-class Rule
-  def initialize
-  # not sure what the "state" of a rule object should be
-  end
-end
-
-# not sure where compare goes yet
-
-def compare(move1, move2)
-
-end
 
 class RPSGame
   attr_accessor :human, :computer
@@ -81,11 +63,25 @@ class RPSGame
     puts "Thanks for playing Rock, Paper, Scissors. Good bye!"
   end
 
+  def play_again?
+    answer = nil
+    loop do
+      puts "Would you like to play again? (y/n)"
+      answer = gets.chomp
+      break if ["y", "n"].include?(answer)
+    end
+    return true if answer == "y"
+    return false
+  end
+
   def play
     display_welcome_message
-    human.choose
-    computer.choose
-    display_winner
+    loop do
+      human.choose
+      computer.choose
+      display_winner
+      break unless play_again?
+    end
     display_goodbye_message
   end
 end
