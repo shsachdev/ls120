@@ -37,13 +37,21 @@ class Player
   end
 end
 
+class Human < Player
+
+end
+
+class Computer < Player
+
+end
+
 
 class RPSGame
   attr_accessor :human, :computer
 
   def initialize
-    @human = Player.new
-    @computer = Player.new(:computer)
+    @human = Human.new
+    @computer = Computer.new
   end
 
   def display_welcome_message
