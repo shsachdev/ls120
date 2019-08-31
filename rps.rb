@@ -1,3 +1,21 @@
+class Score
+  attr_accessor :computer_score, :player_score
+
+  def initialize
+    @computer_score = 0
+    @player_score += 0
+  end
+
+  def computer_won
+    @computer_score += 1
+  end
+
+  def player_won
+    @player_score += 1
+  end
+end
+
+
 class Move # turned into class because was being used a lot.
   VALUES = ["rock", "paper", "scissors"]
 
