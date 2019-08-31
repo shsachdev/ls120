@@ -67,7 +67,7 @@ class Move # turned into class because was being used a lot.
 end
 
 class Player
-  attr_accessor :move, :name
+  attr_accessor :move, :name, :score
 
   def initialize
     set_name
@@ -79,6 +79,7 @@ class Human < Player
     puts "What's your name?"
     n = gets.chomp
     self.name = n
+    self.score = Score.new
   end
 
   def choose
@@ -96,6 +97,7 @@ end
 class Computer < Player
   def set_name
     self.name = ["R2D2", "Chipotle", "Anish", "Bahler"].sample
+    self.score = Score.new
   end
 
   def choose
@@ -122,8 +124,10 @@ class RPSGame
 
     if human.move > computer.move
       puts "#{human.name} won!"
-    elsif computer.move < human.move
+      human.score.player_won
+    elsif computer.move > human.move
       puts "#{computer.name} won!"
+      computer.score.computer_won
     else
       puts "It's a tie!"
     end
@@ -150,6 +154,8 @@ class RPSGame
       human.choose
       computer.choose
       display_winner
+      puts "Score: Computer has #{computer.score.computer_score} points, Player has #{human.score.player_score} points."
+      break if computer.score.computer_score == 10 || human.score.computer_score == 10
       break unless play_again?
     end
     display_goodbye_message
