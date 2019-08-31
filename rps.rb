@@ -48,19 +48,6 @@ class Move # turned into class because was being used a lot.
     end
   end
 
-  def <(other_move)
-    if rock?
-      return true if other_move.paper?
-      return false
-    elsif paper?
-      return true if other_move.scissors?
-      return false
-    else
-      return true if other_move.rock?
-      return false
-    end
-  end
-
   def to_s
     @value
   end
