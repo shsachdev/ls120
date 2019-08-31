@@ -3,7 +3,7 @@ class Score
 
   def initialize
     @computer_score = 0
-    @player_score += 0
+    @player_score = 0
   end
 
   def computer_won
