@@ -1,4 +1,4 @@
-class Move
+class Move # turned into class because was being used a lot. 
   VALUES = ["rock", "paper", "scissors"]
 
   def initialize(value)
