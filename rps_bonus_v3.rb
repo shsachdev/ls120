@@ -16,10 +16,18 @@ class Score
 end
 
 class MoveHistory
+  attr_accessor :computer_history, :player_history
+
+  def initialize
+    @computer_history = []
+    @player_history = []
+  end
 end
 
 
 class Move
+  attr_reader :value
+
   VALUES = ["rock", "paper", "scissors", "lizard", "spock"]
 
   def initialize(value)
@@ -76,7 +84,7 @@ class Move
 end
 
 class Player
-  attr_accessor :move, :name, :score
+  attr_accessor :move, :name, :score, :history
 
   def initialize
     set_name
@@ -89,6 +97,7 @@ class Human < Player
     n = gets.chomp
     self.name = n
     self.score = Score.new
+    self.history = MoveHistory.new
   end
 
   def choose
@@ -99,6 +108,7 @@ class Human < Player
       break if Move::VALUES.include?(choice)
       puts "Sorry, invalid."
     end
+    self.history.player_history << choice
     self.move = Move.new(choice)
   end
 end
@@ -107,10 +117,12 @@ class Computer < Player
   def set_name
     self.name = ["R2D2", "Chipotle", "Anish", "Bahler"].sample
     self.score = Score.new
+    self.history = MoveHistory.new
   end
 
   def choose
     self.move = Move.new(Move::VALUES.sample)
+    self.history.computer_history << self.move.value
   end
 end
 
@@ -164,6 +176,7 @@ class RPSGame
       computer.choose
       display_winner
       puts "Score: Computer has #{computer.score.computer_score} points, Player has #{human.score.player_score} points."
+      puts "Histoy of Moves -  Computer: #{computer.history.computer_history}. Player: #{human.history.player_history}"
       break if computer.score.computer_score == 10 || human.score.computer_score == 10
       break unless play_again?
     end
