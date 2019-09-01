@@ -97,7 +97,7 @@ class MoveHistory < Move
   def compute_loss_history
     hash = {"rock": 0, "paper": 0, "scissors": 0, "lizard": 0, "spock": 0}
     @computer_history.each_with_index do |move_type, index|
-      if move_type > @player_history[index]
+      if move_type > @player_history[index] # how to access player_history attribute? 
         hash[move_type] += 1
       end
     end
