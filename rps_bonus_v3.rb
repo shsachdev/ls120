@@ -1,19 +1,3 @@
-class Rock
-end
-
-class Scissors
-end
-
-class Paper
-end
-
-class Spock
-end
-
-class Lizard
-end
-
-
 class Score
   attr_accessor :computer_score, :player_score
 
@@ -29,6 +13,9 @@ class Score
   def player_won
     @player_score += 1
   end
+end
+
+class MoveHistory
 end
 
 
