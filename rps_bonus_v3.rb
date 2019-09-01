@@ -15,19 +15,6 @@ class Score
   end
 end
 
-class MoveHistory
-  attr_accessor :computer_history, :player_history
-
-  def initialize
-    @computer_history = []
-    @player_history = []
-  end
-
-  def compute_optimal_move
-    
-  end
-end
-
 
 class Move
   attr_reader :value
@@ -87,6 +74,25 @@ class Move
   end
 end
 
+class MoveHistory < Move
+  attr_accessor :computer_history, :player_history
+
+  def initialize
+    @computer_history = []
+    @player_history = []
+  end
+
+  # def compute_loss_history
+  #   hash = {"rock": 0, "paper": 0, "scissors": 0, "lizard": 0, "spock": 0}
+  #   @computer_history.each_with_index do |move_type, index|
+  #     if move_type > @player_history[index] # can't use < method to compare strings.
+  #       hash[move_type] += 1
+  #     end
+  #   end
+  #   hash
+  # end
+end
+
 class Player
   attr_accessor :move, :name, :score, :history
 
@@ -112,8 +118,8 @@ class Human < Player
       break if Move::VALUES.include?(choice)
       puts "Sorry, invalid."
     end
-    self.history.player_history << choice
     self.move = Move.new(choice)
+    self.history.player_history << self.move
   end
 end
 
@@ -126,7 +132,7 @@ class Computer < Player
 
   def choose
     self.move = Move.new(Move::VALUES.sample)
-    self.history.computer_history << self.move.value
+    self.history.computer_history << self.move
   end
 end
 
@@ -135,7 +141,7 @@ end
 # 1. Analyze Move History and compute losing probability of every type of move
   # => {"rock": 60%, "paper": 30%, "scissors": 50%, "lizard": 33%, "spock": 45%}
 
-# 2. If a particular move has a loss percentage of greater than 60, AND trial size is greater than 3, then decrease the
+# 2. If a particular move has a loss percentage of greater than 60, AND total number of moves > 8, then decrease the
 # probability of picking that type of move.
 
   # At the start, the probability of each type of nmove should be 20%.
@@ -194,6 +200,7 @@ class RPSGame
       display_winner
       puts "Score: Computer has #{computer.score.computer_score} points, Player has #{human.score.player_score} points."
       puts "Histoy of Moves -  Computer: #{computer.history.computer_history}. Player: #{human.history.player_history}"
+      # puts "#{computer.history.compute_loss_history}"
       break if computer.score.computer_score == 10 || human.score.computer_score == 10
       break unless play_again?
     end
