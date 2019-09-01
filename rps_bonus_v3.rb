@@ -82,6 +82,18 @@ class MoveHistory < Move
     @player_history = []
   end
 
+  def computer_history_format # => array of moves (str) rather than array of moves (object format)
+    @computer_history.map do |elem|
+      elem.value
+    end
+  end
+
+  def player_history_format
+    @player_history.map do |elem|
+      elem.value
+    end
+  end
+
   # def compute_loss_history
   #   hash = {"rock": 0, "paper": 0, "scissors": 0, "lizard": 0, "spock": 0}
   #   @computer_history.each_with_index do |move_type, index|
@@ -199,7 +211,7 @@ class RPSGame
       computer.choose
       display_winner
       puts "Score: Computer has #{computer.score.computer_score} points, Player has #{human.score.player_score} points."
-      puts "Histoy of Moves -  Computer: #{computer.history.computer_history}. Player: #{human.history.player_history}"
+      puts "Histoy of Moves -  Computer: #{computer.history.computer_history_format}. Player: #{human.history.player_history_format}"
       # puts "#{computer.history.compute_loss_history}"
       break if computer.score.computer_score == 10 || human.score.computer_score == 10
       break unless play_again?
