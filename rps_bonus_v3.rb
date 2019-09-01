@@ -22,6 +22,10 @@ class MoveHistory
     @computer_history = []
     @player_history = []
   end
+
+  def compute_optimal_move
+    
+  end
 end
 
 
@@ -115,7 +119,7 @@ end
 
 class Computer < Player
   def set_name
-    self.name = ["R2D2", "Chipotle", "Anish", "Bahler"].sample
+    self.name = ["R2D2", "Chipotle", "Anish", "Bahler"].sample # we don't want it to be a random choice
     self.score = Score.new
     self.history = MoveHistory.new
   end
@@ -125,6 +129,19 @@ class Computer < Player
     self.history.computer_history << self.move.value
   end
 end
+
+# Algorithm for Computer Move Choice
+
+# 1. Analyze Move History and compute losing probability of every type of move
+  # => {"rock": 60%, "paper": 30%, "scissors": 50%, "lizard": 33%, "spock": 45%}
+
+# 2. If a particular move has a loss percentage of greater than 60, AND trial size is greater than 3, then decrease the
+# probability of picking that type of move.
+
+  # At the start, the probability of each type of nmove should be 20%.
+  # if condition in 2 above is met, then decrease the probability of that choice by 5% (and distribute that 5% equally amongst the other 4 choices.)
+
+# 3. Pick a random move (with adjusted probabilities).
 
 
 class RPSGame
