@@ -17,7 +17,7 @@ end
 
 
 class Move # turned into class because was being used a lot.
-  VALUES = ["rock", "paper", "scissors"]
+  VALUES = ["rock", "paper", "scissors", "lizard", "spock"]
 
   def initialize(value)
     @value = value
