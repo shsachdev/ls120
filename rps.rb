@@ -16,7 +16,7 @@ class Score
 end
 
 
-class Move # turned into class because was being used a lot.
+class Move
   VALUES = ["rock", "paper", "scissors", "lizard", "spock"]
 
   def initialize(value)
@@ -35,15 +35,34 @@ class Move # turned into class because was being used a lot.
     @value == "paper"
   end
 
+  def lizard?
+    @value == "lizard"
+  end
+
+  def spock?
+    @value == "spock"
+  end
+
   def >(other_move)
     if rock?
       return true if other_move.scissors?
+      return true if other_move.lizard?
       return false
     elsif paper?
       return true if other_move.rock?
+      return true if other_move.spock?
+      return false
+    elsif scissors?
+      return true if other_move.paper?
+      return true if other_move.lizard?
+      return false
+    elsif lizard?
+      return true if other_move.paper?
+      return true if other_move.spock?
       return false
     else
-      return true if other_move.paper?
+      return true if other_move.scissors?
+      return true if other_move.rock?
       return false
     end
   end
@@ -72,7 +91,7 @@ class Human < Player
   def choose
     choice = nil
     loop do
-      puts "Please choose rock, paper, or scissors:"
+      puts "Please choose rock, paper, scissors, spock, or lizard:"
       choice = gets.chomp
       break if Move::VALUES.include?(choice)
       puts "Sorry, invalid."
@@ -121,7 +140,7 @@ class RPSGame
   end
 
   def display_goodbye_message
-    puts "Thanks for playing Rock, Paper, Scissors. Good bye!"
+    puts "Thanks for playing Rock, Paper, Scissors, Spock, and Lizard. Good bye!"
   end
 
   def play_again?
