@@ -95,11 +95,12 @@ class MoveHistory < Move
   end
 
   def compute_loss_history(obj)
-    hash = {"rock": 0, "paper": 0, "scissors": 0, "lizard": 0, "spock": 0}
+    hash = {"rock" => 0, "paper" => 0, "scissors" => 0, "lizard" => 0, "spock" => 0}
     if @computer_history[-1] > obj[-1]
-      p @computer_history[-1].value
+      @computer_history[-1].value
       hash[@computer_history[-1].value] += 1
     end
+    hash
   end
 end
 
