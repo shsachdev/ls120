@@ -94,14 +94,12 @@ class MoveHistory < Move
     end
   end
 
-  def compute_loss_history(obj) # trash method. it won't even work. 
+  def compute_loss_history(obj)
     hash = {"rock": 0, "paper": 0, "scissors": 0, "lizard": 0, "spock": 0}
-    @computer_history.each_with_index do |move_type, index|
-      if move_type > obj[index]
-        hash[move_type.value] += 1
-      end
+    if @computer_history[-1] > obj[-1]
+      p @computer_history[-1].value
+      hash[@computer_history[-1].value] += 1
     end
-    hash
   end
 end
 
