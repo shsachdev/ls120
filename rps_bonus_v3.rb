@@ -98,7 +98,13 @@ class MoveHistory < Move
     hash = {"rock": 0, "paper": 0, "scissors": 0, "lizard": 0, "spock": 0}
     @computer_history.each_with_index do |move_type, index|
       if move_type > obj[index]
-        hash[move_type] += 1
+        p move_type.value
+        p hash
+        n = move_type.value
+        p n
+        p hash[n]
+        p hash[:n]
+        # hash[:n] += 1
       end
     end
     hash
