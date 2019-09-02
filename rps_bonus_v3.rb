@@ -93,17 +93,19 @@ class MoveHistory < Move
       elem.value
     end
   end
-  #
-  # def compute_loss_history
-  #   hash = {"rock": 0, "paper": 0, "scissors": 0, "lizard": 0, "spock": 0}
-  #   @computer_history.each_with_index do |move_type, index|
-  #     if move_type > @player_history[index] # how to access player_history attribute?
-  #       hash[move_type] += 1
-  #     end
-  #   end
-  #   hash
-  # end
+
+  def compute_loss_history(obj)
+    hash = {"rock": 0, "paper": 0, "scissors": 0, "lizard": 0, "spock": 0}
+    @computer_history.each_with_index do |move_type, index|
+      if move_type > obj[index] # how to access player_history attribute?
+        hash[move_type] += 1
+      end
+    end
+    hash
+  end
 end
+
+# player.history.player_history
 
 class Player
   attr_accessor :move, :name, :score, :history
@@ -213,6 +215,7 @@ class RPSGame
       puts "Score: Computer has #{computer.score.computer_score} points, Player has #{human.score.player_score} points."
       puts "Histoy of Moves -  Computer: #{computer.history.computer_history_format}. Player: #{human.history.player_history_format}"
       break if computer.score.computer_score == 10 || human.score.computer_score == 10
+      puts computer.history.compute_loss_history(player.history.player_history)
       break unless play_again?
     end
     display_goodbye_message
