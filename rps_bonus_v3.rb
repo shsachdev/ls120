@@ -117,7 +117,7 @@ class MoveHistory < Move
   def adjust_move_weight
     WIN_RATIO.each do |k, v|
       if v < 0.4 && @computer_history.count(k) > 3
-        COMPUTER_VALUE_WEIGHTS[k] -= 0.05
+        COMPUTER_VALUE_WEIGHTS[k] -= 0.03
       end
     end
   end
@@ -231,9 +231,12 @@ class RPSGame
       computer.choose
       display_winner
       computer.history.compute_loss_history(human.history.player_history)
+      computer.history.adjust_move_weight
       puts "Score: Computer has #{computer.score.computer_score} points, Player has #{human.score.player_score} points."
       puts "Histoy of Moves -  Computer: #{computer.history.computer_history_format}. Player: #{human.history.player_history_format}"
       break if computer.score.computer_score == 10 || human.score.computer_score == 10
+      p MoveHistory::WIN_RATIO
+      p Move::COMPUTER_VALUE_WEIGHTS
       break unless play_again?
     end
     display_goodbye_message
