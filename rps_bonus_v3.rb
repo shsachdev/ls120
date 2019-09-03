@@ -152,7 +152,7 @@ class Computer < Player
     self.history = MoveHistory.new
   end
 
-  def choose
+  def choose # alter method take into account compute_loss_history method.
     self.move = Move.new(Move::VALUES.sample)
     self.history.computer_history << self.move
   end
