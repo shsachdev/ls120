@@ -100,8 +100,15 @@ class MoveHistory < Move
       @computer_history[-1].value
       hash[@computer_history[-1].value] += 1
     end
-    hash
+    win_loss_ratio = {"rock" => 0, "paper" => 0, "scissors" => 0, "lizard" => 0, "spock" => 0}
+    hash.each do |k, v|
+      if v != 0
+        win_loss_ratio[k] = v.to_f / computer_history_format.count(k).to_f
+      end
+    end
+    win_loss_ratio
   end
+
 end
 
 # player.history.player_history
