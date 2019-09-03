@@ -21,7 +21,7 @@ class Move
 
   VALUES = ["rock", "paper", "scissors", "lizard", "spock"]
 
-  COMPUTER_VALUE_WEIGHTS = {"rock" => 0.2, "paper" => 0.2, "scissors" => 0.2, "lizard" => 0.2, "spock" => 0.2}
+  COMPUTER_VALUE_WEIGHTS = {"rock" => 0.2, "paper" => 0.2, "scissors" => 0.2, "lizard" => 0.2, "spock" => 0.2} # this is going to change, so should not be a constant.
 
   def initialize(value)
     @value = value
@@ -77,9 +77,9 @@ class Move
 end
 
 class MoveHistory < Move
-  WIN_COUNTER = {"rock" => 0, "paper" => 0, "scissors" => 0, "lizard" => 0, "spock" => 0}
+  WIN_COUNTER = {"rock" => 0, "paper" => 0, "scissors" => 0, "lizard" => 0, "spock" => 0} # this is going to change, so should not be a constant. 
 
-  WIN_RATIO = {"rock" => 0, "paper" => 0, "scissors" => 0, "lizard" => 0, "spock" => 0}
+  WIN_RATIO = {"rock" => 0, "paper" => 0, "scissors" => 0, "lizard" => 0, "spock" => 0} # this is going to change, so should not be a constant.
 
   attr_accessor :computer_history, :player_history
 
@@ -116,7 +116,7 @@ class MoveHistory < Move
 
   def adjust_move_weight
     WIN_RATIO.each do |k, v|
-      if v < 0.4 && @computer_history.count(k) > 3
+      if v < 0.4 && @computer_history.count(k) > 2
         COMPUTER_VALUE_WEIGHTS[k] -= 0.03
       end
     end
