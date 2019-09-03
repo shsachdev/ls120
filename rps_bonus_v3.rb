@@ -21,6 +21,8 @@ class Move
 
   VALUES = ["rock", "paper", "scissors", "lizard", "spock"]
 
+  COMPUTER_VALUE_WEIGHTS = {"rock" => 0.2, "paper" => 0.2, "scissors" => 0.2, "lizard" => 0.2, "spock" => 0.2}
+
   def initialize(value)
     @value = value
   end
@@ -110,6 +112,14 @@ class MoveHistory < Move
       end
     end
     WIN_RATIO
+  end
+
+  def adjust_move_weight
+    WIN_RATIO.each do |k, v|
+      if v < 0.4 && @computer_history.count(k) > 3
+        COMPUTER_VALUE_WEIGHTS[k] -= 0.05
+      end
+    end
   end
 end
 
@@ -220,10 +230,10 @@ class RPSGame
       human.choose
       computer.choose
       display_winner
+      computer.history.compute_loss_history(human.history.player_history)
       puts "Score: Computer has #{computer.score.computer_score} points, Player has #{human.score.player_score} points."
       puts "Histoy of Moves -  Computer: #{computer.history.computer_history_format}. Player: #{human.history.player_history_format}"
       break if computer.score.computer_score == 10 || human.score.computer_score == 10
-      puts computer.history.compute_loss_history(human.history.player_history)
       break unless play_again?
     end
     display_goodbye_message
