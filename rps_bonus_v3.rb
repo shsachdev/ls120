@@ -75,9 +75,9 @@ class Move
 end
 
 class MoveHistory < Move
-  HASH = {"rock" => 0, "paper" => 0, "scissors" => 0, "lizard" => 0, "spock" => 0}
+  WIN_COUNTER = {"rock" => 0, "paper" => 0, "scissors" => 0, "lizard" => 0, "spock" => 0}
 
-  WIN_LOSS_RATIO = {"rock" => 0, "paper" => 0, "scissors" => 0, "lizard" => 0, "spock" => 0}
+  WIN_RATIO = {"rock" => 0, "paper" => 0, "scissors" => 0, "lizard" => 0, "spock" => 0}
 
   attr_accessor :computer_history, :player_history
 
@@ -101,16 +101,15 @@ class MoveHistory < Move
   def compute_loss_history(obj)
     if @computer_history[-1] > obj[-1]
       @computer_history[-1].value
-      HASH[@computer_history[-1].value] += 1
+      WIN_COUNTER[@computer_history[-1].value] += 1
     end
-    HASH.each do |k, v|
+    WIN_COUNTER.each do |k, v|
       if v != 0
-        WIN_LOSS_RATIO[k] = v.to_f / computer_history_format.count(k).to_f
+        WIN_RATIO[k] = v.to_f / computer_history_format.count(k).to_f
       end
     end
-    WIN_LOSS_RATIO
+    WIN_RATIO
   end
-
 end
 
 # player.history.player_history
