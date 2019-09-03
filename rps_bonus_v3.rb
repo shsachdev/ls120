@@ -100,8 +100,9 @@ class MoveHistory < Move
 
   def compute_loss_history(obj)
     if @computer_history[-1] > obj[-1]
-      @computer_history[-1].value
       WIN_COUNTER[@computer_history[-1].value] += 1
+    elsif obj[-1] > @computer_history[-1] != true
+      WIN_COUNTER[@computer_history[-1].value] += 0.5
     end
     WIN_COUNTER.each do |k, v|
       if v != 0
