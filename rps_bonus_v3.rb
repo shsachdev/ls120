@@ -77,7 +77,7 @@ class Move
 end
 
 class MoveHistory < Move
-  WIN_COUNTER = {"rock" => 0, "paper" => 0, "scissors" => 0, "lizard" => 0, "spock" => 0} # this is going to change, so should not be a constant. 
+  WIN_COUNTER = {"rock" => 0, "paper" => 0, "scissors" => 0, "lizard" => 0, "spock" => 0} # this is going to change, so should not be a constant.
 
   WIN_RATIO = {"rock" => 0, "paper" => 0, "scissors" => 0, "lizard" => 0, "spock" => 0} # this is going to change, so should not be a constant.
 
