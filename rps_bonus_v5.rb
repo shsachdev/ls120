@@ -203,7 +203,7 @@ class Computer < Player
   end
 
   def choose # alter method take into account compute_loss_history method.
-    self.move = Move.new(self.history.pick_move) # instead of history, you would utilize name object to pick move. 
+    self.move = Move.new(self.history.pick_move) # instead of history, you would utilize name object to pick move.
     self.history.computer_history << self.move
   end
 end
