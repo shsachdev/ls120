@@ -114,11 +114,8 @@ class MoveHistory < Move
 
   def adjust_move_weight # this is currently not adjusting move weight.
     @win_ratio.each do |k, v|
-      p v
-      p k
-      if v < 0.4 && @computer_history.count(k) > 2
+      if v < 0.4 && computer_history_format.count(k) > 2
         @computer_value_weights[k] -= 0.03
-        p "hello"
       end
     end
   end
