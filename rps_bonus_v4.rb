@@ -119,9 +119,19 @@ class MoveHistory < Move
       end
     end
   end
+
+  def pick_move
+    # Given a hash of moves and their respective weights, pick a move (based on weight.)
+    arr_of_moves = []
+    @computer_value_weights.each do |k, v|
+      (v * 100).to_i.times do
+        arr_of_moves << k
+      end
+    end
+    arr_of_moves.sample
+  end
 end
 
-# player.history.player_history
 
 class Player
   attr_accessor :move, :name, :score, :history
@@ -161,7 +171,7 @@ class Computer < Player
   end
 
   def choose # alter method take into account compute_loss_history method.
-    self.move = Move.new(Move::VALUES.sample)
+    self.move = Move.new(self.history.pick_move)
     self.history.computer_history << self.move
   end
 end
