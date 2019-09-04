@@ -15,6 +15,38 @@ class Score
   end
 end
 
+class R2D2
+  attr_reader :value
+
+  def initialize
+    @value = "R2D2"
+  end
+end
+
+class Chipotle
+  attr_reader :value
+
+  def initialize
+    @value = "Chipotle"
+  end
+end
+
+class Anish
+  attr_reader :value
+
+  def initialize
+    @value = "Anish"
+  end
+end
+
+class Bahler
+  attr_reader :value
+
+  def initialize
+    @value = "Bahler"
+  end
+end
+
 
 class Move
   attr_reader :value
@@ -165,7 +197,7 @@ end
 
 class Computer < Player
   def set_name
-    self.name = ["R2D2", "Chipotle", "Anish", "Bahler"].sample # we don't want it to be a random choice
+    self.name = [R2D2.new, Chipotle.new, Anish.new, Bahler.new].sample # we don't want it to be a random choice
     self.score = Score.new
     self.history = MoveHistory.new
   end
@@ -204,13 +236,13 @@ class RPSGame
 
   def display_winner
     puts "#{human.name} chose #{human.move}."
-    puts "#{computer.name} chose #{computer.move}."
+    puts "#{computer.name.value} chose #{computer.move}."
 
     if human.move > computer.move
       puts "#{human.name} won!"
       human.score.player_won
     elsif computer.move > human.move
-      puts "#{computer.name} won!"
+      puts "#{computer.name.value} won!"
       computer.score.computer_won
     else
       puts "It's a tie!"
