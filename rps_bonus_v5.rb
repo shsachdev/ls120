@@ -197,7 +197,8 @@ end
 
 class Computer < Player
   def set_name
-    self.name = [R2D2.new, Chipotle.new, Anish.new, Bahler.new].sample # we don't want it to be a random choice
+    @name = [R2D2.new, Chipotle.new, Anish.new, Bahler.new].sample # we don't want it to be a random choice
+    # @name or self.name work equally well
     self.score = Score.new
     self.history = MoveHistory.new
   end
