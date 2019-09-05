@@ -4,6 +4,10 @@ end
 
 class Cat
   def legs
-    LEGS
+    Dog::LEGS   # added the :: namespace resolution  operator.
   end
 end
+
+kitty = Cat.new
+
+kitty.legs  # => 4
