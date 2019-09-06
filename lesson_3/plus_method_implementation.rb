@@ -49,7 +49,7 @@ niners << Person.new("Deion Sanders", 47)
 dream_team = cowboys + niners # what is dream_team?
 
 
-# dream_team is an array of person objects => note, now I refactored it so that it returns a team object. 
+# dream_team is an array of person objects => note, now I refactored it so that it returns a team object.
 
 # Note: normally, the Integer#+ method returns a new Integer object.
 
