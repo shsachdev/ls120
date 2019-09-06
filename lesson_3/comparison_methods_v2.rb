@@ -20,3 +20,5 @@ kim = Person.new("Kim", 33)
 puts "bob is older than kim" if bob > kim # Undefined method ">" for Object
 
 puts "bob is older than kim" if bob.>(kim)
+
+# Also note that defining > doesn't automatically give us <.
