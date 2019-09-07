@@ -10,4 +10,4 @@ end
 
 oracle = Oracle.new
 
-oracle.predict_the_future
+oracle.predict_the_future # => You will eat a nice lunch (or any other completing sentence.)
