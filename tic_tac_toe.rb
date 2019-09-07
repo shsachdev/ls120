@@ -1,13 +1,24 @@
 class Board
+  INITIAL_MARKER = " "
+
   def initialize
-    @squares = {1 => Square.new(" "), 2 => Square.new(" "), 3 => Square.new(" "), 4 => Square.new(" "), 5 => Square.new(" "),
-    6 => Square.new(" "), 7 => Square.new(" "), 8 => Square.new(" "), 9 => Square.new(" ") }
+    @squares = {}
+    (1..9).each {|key| @squares[key] = Square.new(INITIAL_MARKER)}
+  end
+
+  def get_square_at(key)
+    @squares[key]
   end
 end
 
 class Square
+
   def initialize(marker)
     @marker = marker
+  end
+
+  def to_s
+    @marker
   end
 end
 
@@ -41,15 +52,15 @@ class TTTGame
   def display_board
     puts ""
     puts "     |     |"
-    puts "     |     |"
-    puts "     |     |"
-    puts "-----+-----+-----"
-    puts "     |     |"
-    puts "     |     |"
+    puts "  #{board.get_square_at(1)}  |  #{board.get_square_at(2)}  |  #{board.get_square_at(3)} "
     puts "     |     |"
     puts "-----+-----+-----"
     puts "     |     |"
+    puts "  #{board.get_square_at(4)}  |  #{board.get_square_at(5)}  |  #{board.get_square_at(6)} "
     puts "     |     |"
+    puts "-----+-----+-----"
+    puts "     |     |"
+    puts "  #{board.get_square_at(7)}  |  #{board.get_square_at(8)}  |  #{board.get_square_at(9)} "
     puts "     |     |"
     puts ""
   end
