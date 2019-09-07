@@ -1,15 +1,13 @@
 class Board
   def initialize
-    # we need some way to model the 3x3 grid. Maybe "squares"?
-    # what data structure should we use?
-    # - array/hash of Square objects?
-    # - array/hash of strings or integers?
+    @squares = {1 => Square.new(" "), 2 => Square.new(" "), 3 => Square.new(" "), 4 => Square.new(" "), 5 => Square.new(" "),
+    6 => Square.new(" "), 7 => Square.new(" "), 8 => Square.new(" "), 9 => Square.new(" ") }
   end
 end
 
 class Square
-  def initialize
-    # maybe a "status" to keep track of this square's mark?
+  def initialize(marker)
+    @marker = marker
   end
 end
 
@@ -24,6 +22,13 @@ class Player
 end
 
 class TTTGame
+  attr_reader :board
+
+  def initialize
+    @board = Board.new
+  end
+
+
   def display_welcome_message
     puts "Welcome to Tic Tac Toe!"
     puts ""
