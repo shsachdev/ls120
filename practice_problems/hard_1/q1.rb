@@ -1,6 +1,4 @@
 class SecretFile
-  attr_reader :data
-
   def initialize(secret_data, logger)
     @logger = logger
     @data = secret_data
