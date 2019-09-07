@@ -11,9 +11,3 @@ class SecretFile
     @data
   end
 end
-
-class SecurityLogger
-  def create_log_entry
-
-  end
-end
