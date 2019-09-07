@@ -1,10 +1,22 @@
+module FuelTracking
+  def initialize(km_traveled_per_liter, liters_of_fuel_capacity)
+    @fuel_efficiency = km_traveled_per_liter
+    @fuel_capacity = liters_of_fuel_capacity
+  end
+
+  def range
+    @fuel_capacity * @fuel_capacity
+  end
+end
+
+
 class WheeledVehicle
+  include FuelTracking
   attr_accessor :speed, :heading
 
   def initialize(tire_array, km_traveled_per_liter, liters_of_fuel_capacity)
     @tires = tire_array
-    @fuel_efficiency = km_traveled_per_liter
-    @fuel_capacity = liters_of_fuel_capacity
+    super(km_traveled_per_liter, liters_of_fuel_capacity)
   end
 
   def tire_pressure(tire_index)
@@ -13,10 +25,6 @@ class WheeledVehicle
 
   def inflate_tire(tire_index, pressure)
     @tires[tire_index] = pressure
-  end
-
-  def range
-    @fuel_capacity * @fuel_capacity
   end
 end
 
@@ -34,11 +42,19 @@ class Motorcycle < WheeledVehicle
   end
 end
 
+
 class Catamaran
+  include FuelTracking
   attr_reader :propeller_count, :hull_count
   attr_accessor :speed, :heading
 
   def initialize(num_propellers, num_hulls, km_traveled_per_liter, liters_of_fuel_capacity)
-    # ... code omitted ...
+    @num_propellers = num_propellers
+    @num_hulls = num_hulls
+    super(km_traveled_per_liter, liters_of_fuel_capacity)
   end
 end
+
+boat = Catamaran.new(4,5,19,12)
+
+p boat
