@@ -21,13 +21,34 @@ class Player
   def mark
 
   end
-
-  def play
-
-  end
 end
 
 class TTTGame
+  def display_welcome_message
+    puts "Welcome to Tic Tac Toe!"
+    puts ""
+  end
+
+  def display_goodbye_message
+    puts "Thanks for playing!"
+  end
+
+  def display_board
+    puts ""
+    puts "     |     |"
+    puts "     |     |"
+    puts "     |     |"
+    puts "-----+-----+-----"
+    puts "     |     |"
+    puts "     |     |"
+    puts "     |     |"
+    puts "-----+-----+-----"
+    puts "     |     |"
+    puts "     |     |"
+    puts "     |     |"
+    puts ""
+  end
+
   def play
     display_welcome_message
     loop do
