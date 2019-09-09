@@ -37,6 +37,8 @@ class TTTGame
 
   def initialize
     @board = Board.new
+    @human = Player.new
+    @computer = Player.new
   end
 
 
@@ -65,14 +67,25 @@ class TTTGame
     puts ""
   end
 
+  def human_moves
+    puts "Choose a square between 1-9: "
+    loop do
+      square = gets.chomp.to_i
+      break if (1..9).include?(square)
+      puts "Sorry, that's not a valid choice."
+    end
+
+    board.set_square_at(num, marker)
+  end
+
   def play
     display_welcome_message
     loop do
       display_board
-      first_player_moves
+      human_moves
       break if someone_won? || board_full?
 
-      second_player_moves
+      computer_moves
       break if someone_won? || board_full?
     end
     display_result
