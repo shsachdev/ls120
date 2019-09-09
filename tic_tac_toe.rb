@@ -84,11 +84,11 @@ class TTTGame
   end
 
   def computer_moves
-    board.set_square_at((1..9).to_a.sample, computer.marker)
+    board.set_square_at(board.unmarked_keys.sample, computer.marker)
   end
 
   def human_moves
-    puts "Choose a square between 1-9: "
+    puts "Choose a square (#{board.unmarked_keys.join(", ")}): "
     square = nil
     loop do
       square = gets.chomp.to_i
