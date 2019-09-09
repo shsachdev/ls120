@@ -12,6 +12,7 @@ class Board
 end
 
 class Square
+  attr_reader :marker
 
   def initialize(marker)
     @marker = marker
@@ -23,22 +24,18 @@ class Square
 end
 
 class Player
-  def initialize
-    # maybe a "marker" to keep track of this player's symbol (ie, "X" or "O")
-  end
-
-  def mark
-
+  def initialize(marker)
+    @marker = marker
   end
 end
 
 class TTTGame
-  attr_reader :board
+  attr_reader :board, :human, :computer
 
   def initialize
     @board = Board.new
-    @human = Player.new
-    @computer = Player.new
+    @human = Player.new("X")
+    @computer = Player.new("O")
   end
 
 
@@ -69,13 +66,14 @@ class TTTGame
 
   def human_moves
     puts "Choose a square between 1-9: "
+    square = nil
     loop do
       square = gets.chomp.to_i
       break if (1..9).include?(square)
       puts "Sorry, that's not a valid choice."
     end
 
-    board.set_square_at(num, marker)
+    board.set_square_at(square, human.marker)
   end
 
   def play
