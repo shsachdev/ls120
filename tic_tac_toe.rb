@@ -72,6 +72,7 @@ class TTTGame
   end
 
   def display_board
+    system "clear"
     puts ""
     puts "     |     |"
     puts "  #{board.get_square_at(1)}  |  #{board.get_square_at(2)}  |  #{board.get_square_at(3)} "
@@ -102,6 +103,11 @@ class TTTGame
     board.set_square_at(square, human.marker)
   end
 
+  def display_result
+    display_board
+    puts "The board is full!"
+  end
+
   def play
     display_welcome_message
     display_board
@@ -116,7 +122,7 @@ class TTTGame
 
       display_board
     end
-    # display_result
+    display_result
     display_goodbye_message
   end
 end
