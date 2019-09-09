@@ -1,11 +1,9 @@
 require "pry"
 
 class Board
-  INITIAL_MARKER = " "
-
   def initialize
     @squares = {}
-    (1..9).each {|key| @squares[key] = Square.new(INITIAL_MARKER)}
+    (1..9).each {|key| @squares[key] = Square.new}
   end
 
   def get_square_at(key)
@@ -23,12 +21,21 @@ class Board
   def full?
     unmarked_keys.empty?
   end
+
+  def someone_won?
+    !!detect_winner
+  end
+
+  # returns winning marker or nil
+  def detect_winner
+  end
 end
 
 class Square
+  INITIAL_MARKER = " "
   attr_accessor :marker
 
-  def initialize(marker)
+  def initialize(marker=INITIAL_MARKER)
     @marker = marker
   end
 
@@ -37,7 +44,7 @@ class Square
   end
 
   def unmarked?
-    marker == Board::INITIAL_MARKER
+    marker == INITIAL_MARKER
   end
 end
 
@@ -73,6 +80,7 @@ class TTTGame
 
   def display_board
     system "clear"
+    puts "You're a #{human.marker}. Computer is a #{computer.marker}."
     puts ""
     puts "     |     |"
     puts "  #{board.get_square_at(1)}  |  #{board.get_square_at(2)}  |  #{board.get_square_at(3)} "
@@ -113,13 +121,9 @@ class TTTGame
     display_board
     loop do
       human_moves
-      break if board.full?
-      # break if someone_won? || board_full?
-
+      break if board.someone_won? || board.full?
       computer_moves
-      break if board.full?
-      # break if someone_won? || board_full?
-
+      break if board.someone_won? || board.full?
       display_board
     end
     display_result
