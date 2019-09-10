@@ -41,9 +41,9 @@ class Board
   # returns winning marker or nil
   def detect_winner
     WINNING_LINES.each do |line| # going to refactor this method
-      if count_human_marker(@squares.select {|k, _| line.include?(k)}.values) == 3
+      if count_human_marker(@squares.values_at(*line)) == 3
         return TTTGame::HUMAN_MARKER
-      elsif count_computer_marker(@squares.select {|k, _| line.include?(k)}.values) == 3
+      elsif count_computer_marker(@squares.values_at(*line)) == 3
         return TTTGame::COMPUTER_MARKER
       end
     end
@@ -146,15 +146,19 @@ class TTTGame
 
   def play
     display_welcome_message
-    display_board
     loop do
-      human_moves
-      break if board.someone_won? || board.full?
-      computer_moves
-      break if board.someone_won? || board.full?
       display_board
+      loop do
+        human_moves
+        break if board.someone_won? || board.full?
+        computer_moves
+        break if board.someone_won? || board.full?
+        display_board
+      end
+      display_result
+      break unless play_again?
+      puts "Let's play again!"
     end
-    display_result
     display_goodbye_message
   end
 end
