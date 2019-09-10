@@ -7,7 +7,7 @@ class Board
 
   def initialize
     @squares = {}
-    (1..9).each {|key| @squares[key] = Square.new}
+    reset
   end
 
   def get_square_at(key)
@@ -48,6 +48,10 @@ class Board
       end
     end
     nil
+  end
+
+  def reset
+    (1..9).each {|key| @squares[key] = Square.new}
   end
 end
 
@@ -144,6 +148,18 @@ class TTTGame
     end
   end
 
+  def play_again?
+    answer = nil
+    loop do
+      puts "Would you like to play again? (y/n)"
+      answer = gets.chomp.downcase
+      break if %w(y n).include?(answer)
+      puts "Sorry, must be y or n"
+    end
+
+    answer == "y"
+  end
+
   def play
     display_welcome_message
     loop do
@@ -157,6 +173,7 @@ class TTTGame
       end
       display_result
       break unless play_again?
+      board.reset
       puts "Let's play again!"
     end
     display_goodbye_message
