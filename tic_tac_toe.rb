@@ -32,7 +32,8 @@ class Board
 
   # returns winning marker or nil
   def detect_winner
-    WINNING_LINES.each do |line|
+    WINNING_LINES.each do |line| # going to refactor this method
+      binding.pry
       if @squares[line[0]].marker == TTTGame::HUMAN_MARKER && @squares[line[1]].marker == TTTGame::HUMAN_MARKER && @squares[line[2]].marker == TTTGame::HUMAN_MARKER
         return TTTGame::HUMAN_MARKER
       elsif @squares[line[0]].marker == TTTGame::COMPUTER_MARKER && @squares[line[1]].marker == TTTGame::COMPUTER_MARKER && @squares[line[2]].marker == TTTGame::COMPUTER_MARKER
