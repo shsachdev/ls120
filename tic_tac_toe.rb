@@ -30,13 +30,16 @@ class Board
     !!detect_winner
   end
 
+  def count_human_marker(squares)
+    squares.collect(&:marker).count(TTTGame::HUMAN_MARKER)
+  end
+
   # returns winning marker or nil
   def detect_winner
     WINNING_LINES.each do |line| # going to refactor this method
-      binding.pry
-      if @squares[line[0]].marker == TTTGame::HUMAN_MARKER && @squares[line[1]].marker == TTTGame::HUMAN_MARKER && @squares[line[2]].marker == TTTGame::HUMAN_MARKER
+      if count_human_marker(@squares.select {|k, _| line.include?(k)}.values) == 3
         return TTTGame::HUMAN_MARKER
-      elsif @squares[line[0]].marker == TTTGame::COMPUTER_MARKER && @squares[line[1]].marker == TTTGame::COMPUTER_MARKER && @squares[line[2]].marker == TTTGame::COMPUTER_MARKER
+      elsif count_computer_marker() == 3
         return TTTGame::COMPUTER_MARKER
       end
     end
