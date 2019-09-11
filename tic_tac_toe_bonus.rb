@@ -93,11 +93,9 @@ end
 
 class Player
   attr_reader :marker
-  attr_accessor :human_turn
 
   def initialize(marker)
     @marker = marker
-    @human_turn = true
   end
 end
 
@@ -106,11 +104,13 @@ class TTTGame
   COMPUTER_MARKER = "O"
 
   attr_reader :board, :human, :computer
+  attr_accessor :current_player
 
   def initialize
     @board = Board.new
     @human = Player.new(HUMAN_MARKER)
     @computer = Player.new(COMPUTER_MARKER)
+    @current_player = 1
   end
 
 
@@ -131,11 +131,16 @@ class TTTGame
   end
 
   def current_player_moves
-    if human.human_turn
+    if @current_player.odd?
       human_moves
     else
       computer_moves
     end
+    @current_player += 1
+  end
+
+  def human_turn?
+    @current_player.odd?
   end
 
   def clear_screen_and_display_board
@@ -189,9 +194,8 @@ class TTTGame
       clear_screen_and_display_board
       loop do
         current_player_moves
-        human.human_turn == false unless human.human_turn == false
         break if board.someone_won? || board.full?
-        clear_screen_and_display_board if human.human_turn
+        clear_screen_and_display_board if human_turn?
       end
       display_result
       break unless play_again?
