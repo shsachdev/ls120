@@ -30,9 +30,6 @@ class Board
     !!winning_marker
   end
 
-  def same_marker?(squares)
-    squares.collect(&:marker).count(squares[0].marker) == 3 && squares[0].marker != " "
-  end
 
   # returns winning marker or nil
   def winning_marker
@@ -69,6 +66,12 @@ class Board
     puts "  #{@squares[7]}  |  #{@squares[8]}  |  #{@squares[9]} "
     puts "     |     |"
     puts ""
+  end
+
+  private
+
+  def same_marker?(squares)
+    squares.collect(&:marker).count(squares[0].marker) == 3 && squares[0].marker != " "
   end
 end
 
