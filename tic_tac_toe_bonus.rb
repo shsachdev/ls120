@@ -93,7 +93,7 @@ end
 
 class Player
   attr_reader :marker
-  attr_accessor :current_player
+  attr_accessor :human_turn
 
   def initialize(marker)
     @marker = marker
@@ -135,6 +135,7 @@ class TTTGame
       human_moves
     else
       computer_moves
+    end
   end
 
   def clear_screen_and_display_board
