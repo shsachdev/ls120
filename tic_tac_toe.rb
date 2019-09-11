@@ -102,8 +102,8 @@ class TTTGame
     puts "Thanks for playing!"
   end
 
-  def display_board
-    system "clear"
+  def display_board(clear = true)
+    system "clear" if clear
     puts "You're a #{human.marker}. Computer is a #{computer.marker}."
     puts ""
     puts "     |     |"
@@ -163,7 +163,7 @@ class TTTGame
   def play
     display_welcome_message
     loop do
-      display_board
+      display_board(false)
       loop do
         human_moves
         break if board.someone_won? || board.full?
