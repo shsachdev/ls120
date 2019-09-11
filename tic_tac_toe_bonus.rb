@@ -31,7 +31,8 @@ class Board
   end
 
   def same_marker?(squares)
-    squares.collect(&:marker).count(squares[0].marker) == 3
+    p squares[0].marker
+    squares.collect(&:marker).count(squares[0].marker) == 3 || squares[0].marker != " "
   end
 
   # returns winning marker or nil
@@ -56,7 +57,6 @@ class Board
   end
 
   def draw
-    puts "You're a #{human.marker}. Computer is a #{computer.marker}."
     puts ""
     puts "     |     |"
     puts "  #{@squares[1]}  |  #{@squares[2]}  |  #{@squares[3]} "
