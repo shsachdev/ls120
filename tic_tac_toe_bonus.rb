@@ -31,8 +31,7 @@ class Board
   end
 
   def same_marker?(squares)
-    p squares[0].marker
-    squares.collect(&:marker).count(squares[0].marker) == 3 || squares[0].marker != " "
+    squares.collect(&:marker).count(squares[0].marker) == 3 && squares[0].marker != " "
   end
 
   # returns winning marker or nil
