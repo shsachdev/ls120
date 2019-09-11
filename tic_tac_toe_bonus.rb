@@ -30,7 +30,6 @@ class Board
     !!winning_marker
   end
 
-
   # returns winning marker or nil
   def winning_marker
     WINNING_LINES.each do |line|
@@ -94,9 +93,11 @@ end
 
 class Player
   attr_reader :marker
+  attr_accessor :current_player
 
   def initialize(marker)
     @marker = marker
+    @human_turn = true
   end
 end
 
@@ -127,6 +128,13 @@ class TTTGame
     puts ""
     board.draw
     puts ""
+  end
+
+  def current_player_moves
+    if human.human_turn
+      human_moves
+    else
+      computer_moves
   end
 
   def clear_screen_and_display_board
@@ -179,11 +187,10 @@ class TTTGame
     loop do
       clear_screen_and_display_board
       loop do
-        human_moves
+        current_player_moves
+        human.human_turn == false unless human.human_turn == false
         break if board.someone_won? || board.full?
-        computer_moves
-        break if board.someone_won? || board.full?
-        display_board
+        clear_screen_and_display_board if human.human_turn
       end
       display_result
       break unless play_again?
