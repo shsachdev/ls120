@@ -30,25 +30,26 @@ class Board
     !!winning_marker
   end
 
-  def count_human_marker(squares)
-    squares.collect(&:marker).count(TTTGame::HUMAN_MARKER)
-  end
-
-  def count_computer_marker(squares)
-    squares.collect(&:marker).count(TTTGame::COMPUTER_MARKER)
+  def same_marker?(squares)
+    squares.collect(&:marker).count(squares[0].marker) == 3
   end
 
   # returns winning marker or nil
   def winning_marker
-    WINNING_LINES.each do |line| # going to refactor this method
-      if count_human_marker(@squares.values_at(*line)) == 3 # .values_at(*line) => [1,2,3];
-        return TTTGame::HUMAN_MARKER
-      elsif count_computer_marker(@squares.values_at(*line)) == 3
-        return TTTGame::COMPUTER_MARKER
+    WINNING_LINES.each do |line|
+      if same_marker?(@squares.values_at(*line))
+        return @squares.values_at(*line)[0].marker
       end
     end
     nil
   end
+
+  # winning_marker pseudocode
+
+  # 1. Iterate through WINNING_LINES and see if any of the markers
+      # for the corresponding keys in @squares are all the same.
+  # 2. If they are all the same, then return that marker.
+  # 3. If none of them are the same, then return nil.
 
   def reset
     (1..9).each {|key| @squares[key] = Square.new}
