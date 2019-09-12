@@ -30,7 +30,7 @@ module Hand
     if str.to_i != 0
       card_value = str.to_i
     else
-      case str.value
+      case str
       when "K"
         card_value = 10
       when "J"
@@ -122,8 +122,8 @@ class Game
   def show_initial_cards
     player.playing_hand.each do |crd|
       puts "You have the #{card_converter(crd)[1]} of #{card_converter(crd)[0]}"
-      puts "Your card total is #{player.total}"
     end
+    puts "Your card total is #{player.total}"
   end
 
   def player_turn
