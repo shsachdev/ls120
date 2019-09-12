@@ -36,7 +36,7 @@ class Deck
 
   attr_reader :cards
 
-  SUITES = ["A", "H", "S", "C"]
+  SUITES = ["C", "H", "S", "D"]
   VALUES = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]
 
   def initialize
@@ -98,26 +98,8 @@ class Game
 
   def show_initial_cards
     player.playing_hand.each do |crd|
-      card_converter(crd)
+      puts "You have the #{card_converter(crd)[1]} of #{card_converter(crd)[0]}"
     end
-  end
-
-  def card_converter(obj) # => #<Card:0x007fdd198f1e40 @suite="H", @value="3">
-    suite_str = ""
-    value_str = ""
-    case obj.suite
-    when "H"
-      suite_str = "Hearts"
-    when "S"
-      suite_str = "Spades"
-    when "A"
-      suite_str = "Aces"
-    when "D"
-      suite_str = "Diamonds"
-    end
-
-    if obj.value.to_i != 0
-      suite_str
   end
 
   def player_turn
@@ -135,6 +117,39 @@ class Game
     player_turn
     dealer_turn
     show_result
+  end
+
+  private
+
+  def card_converter(obj)
+    suite_str = ""
+    value_str = ""
+    case obj.suite
+    when "H"
+      suite_str = "Hearts"
+    when "S"
+      suite_str = "Spades"
+    when "C"
+      suite_str = "Clubs"
+    when "D"
+      suite_str = "Diamonds"
+    end
+
+    if obj.value.to_i != 0
+      value_str = obj.value
+    else
+      case obj.value
+      when "K"
+        value_str = "King"
+      when "J"
+        value_str = "Jack"
+      when "Q"
+        value_str = "Queen"
+      when "A"
+        value_str = "Aces"
+      end
+    end
+    arr = [suite_str, value_str]
   end
 end
 
