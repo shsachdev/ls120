@@ -38,8 +38,8 @@ class Deck
     # array, hash, something else?
   end
 
-  def deal
-    # does the dealer or the deck deal?
+  def deal # in our game, the deck will deal cards.
+
   end
 end
 
@@ -50,6 +50,15 @@ class Card
 end
 
 class Game
+  def initialize
+    @player = Player.new
+    @dealer = Dealer.new
+    @deck = Deck.new
+  end
+
+  def deal_cards
+  end
+
   def start
     deal_cards
     show_initial_cards
