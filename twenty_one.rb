@@ -1,4 +1,4 @@
-class Player
+module Hand
   def initialize
     # What would  states of a player object entail?
     # maybe cards? a name?
@@ -18,31 +18,19 @@ class Player
   end
 end
 
+
+
+class Player
+  include Hand
+end
+
 class Dealer
-  def initialize
-    # seems very similar to player..do we even need this?
-  end
-
-  def deal
-    # does the dealer or the deck deal?
-  end
-
-  def hit
-  end
-
-  def stay
-  end
-
-  def busted?
-  end
-
-  def total
-  end
+  include Hand
 end
 
-class Participant
-  # what goes in here? all the redundant behaviors from Player and Dealer?
-end
+# class Participant
+#   # what goes in here? all the redundant behaviors from Player and Dealer?
+# end
 
 class Deck
   def initialize
@@ -63,7 +51,11 @@ end
 
 class Game
   def start
-    # what's the sequence of steps to execute the game play?
+    deal_cards
+    show_initial_cards
+    player_turn
+    dealer_turn
+    show_result
   end
 end
 
