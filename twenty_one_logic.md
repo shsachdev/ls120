@@ -8,3 +8,27 @@ Here is an overview of the game:
   - The dealer must hit until his cards add up to at least 17.
   - If he busts, the player wins. If both player and dealer stays, then the highest total wins.
   - If both totals are equal, then it's a tie, and nobody wins.
+
+Let's write down the nouns and verbs.
+
+Nouns: card, player, dealer, participant, deck, game, total
+Verbs: deal, hit, stay, busts
+
+Player
+  - hit
+  - stay
+  - busted?
+  - total
+
+Dealer
+  - hit
+  - stay
+  - busted?
+  - total
+  - deal (should this be here, or in Deck?)
+Participant
+Deck
+  - deal (should this be here, or in Dealer?)
+Card
+Game
+- start
