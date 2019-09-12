@@ -1,6 +1,8 @@
 require "pry"
 
 module Hand
+  attr_accessor :playing_hand
+
   def initialize
     @playing_hand = []
   end
@@ -32,11 +34,13 @@ end
 
 class Deck
 
+  attr_reader :cards
+
   SUITES = ["A", "H", "S", "C"]
   VALUES = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]
 
   def initialize
-    @deck_of_cards = []
+    @cards = []
     reset
   end
 
@@ -46,22 +50,22 @@ class Deck
       holder << helper(str, VALUES)
     end
     holder.flatten.each do |hand|
-      @deck_of_cards << Card.new(hand.split("")[0],hand.split("")[1])
+      @cards << Card.new(hand.split("")[0],hand.split("")[1])
     end
   end
 
-  def deal # in our game, the deck will deal cards.
-
+  def deal
+    @cards.shuffle!.pop
   end
 
   private
 
   def helper(string, arr)
-    cards = []
+    current_cards = []
     arr.each do |num|
-      cards << num.to_s + string
+      current_cards << num.to_s + string
     end
-    cards
+    current_cards
   end
 end
 
@@ -75,40 +79,49 @@ class Card
   end
 end
 
-#
-# class Game
-#   attr_reader: player, dealer, deck
-#
-#   def initialize
-#     @player = Player.new
-#     @dealer = Dealer.new
-#     @deck = Deck.new
-#   end
-#
-#   def deal_cards
-#     player.playing_hand << deck.deal
-#     computer.playing_hand << deck.deal
-#   end
-#
-#   def show_initial_cards
-#   end
-#
-#   def player_turn
-#   end
-#
-#   def dealer_turn
-#   end
-#
-#   def show_result
-#   end
-#
-#   def start
-#     deal_cards
-#     show_initial_cards
-#     player_turn
-#     dealer_turn
-#     show_result
-#   end
-# end
-#
-# Game.new.start
+
+class Game
+  attr_reader :player, :dealer, :deck
+
+  def initialize
+    @player = Player.new
+    @dealer = Dealer.new
+    @deck = Deck.new
+  end
+
+  def deal_cards
+    2.times do
+      player.playing_hand << deck.deal
+      dealer.playing_hand << deck.deal
+    end
+  end
+
+  def show_initial_cards
+    player.playing_hand.each do |crd|
+      card_converter(crd)
+    end
+  end
+
+  def card_converter(str) # => "5H" == "5 of Hearts"
+
+  end
+
+  def player_turn
+  end
+
+  def dealer_turn
+  end
+
+  def show_result
+  end
+
+  def start
+    deal_cards
+    show_initial_cards
+    player_turn
+    dealer_turn
+    show_result
+  end
+end
+
+Game.new.start
