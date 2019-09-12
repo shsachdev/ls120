@@ -102,8 +102,22 @@ class Game
     end
   end
 
-  def card_converter(str) # => "5H" == "5 of Hearts"
+  def card_converter(obj) # => #<Card:0x007fdd198f1e40 @suite="H", @value="3">
+    suite_str = ""
+    value_str = ""
+    case obj.suite
+    when "H"
+      suite_str = "Hearts"
+    when "S"
+      suite_str = "Spades"
+    when "A"
+      suite_str = "Aces"
+    when "D"
+      suite_str = "Diamonds"
+    end
 
+    if obj.value.to_i != 0
+      suite_str
   end
 
   def player_turn
