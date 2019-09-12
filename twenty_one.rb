@@ -64,7 +64,9 @@ class Deck
     SUITES.each do |str|
       holder << helper(str, VALUES)
     end
-    p holder.flatten.size
+    holder.flatten.each do |hand|
+      @deck_of_cards << Card.new(hand.split("")[0],hand.split("")[1])
+    end
   end
 
   def deal # in our game, the deck will deal cards.
@@ -72,16 +74,17 @@ class Deck
   end
 end
 
-Deck.new
 
-# class Card
-#   attr_reader :value, :suite
-#
-#   def initialize(value, suite)
-#     @value = value
-#     @suite = suite
-#   end
-# end
+class Card
+  attr_reader :value, :suite
+
+  def initialize(value, suite)
+    @value = value
+    @suite = suite
+  end
+end
+
+Deck.new
 #
 # class Game
 #   attr_reader: player, dealer, deck
