@@ -17,10 +17,33 @@ module Hand
   end
 
   def total
-    # we need to know about cards to produce some total
+    sum = 0
+    playing_hand.each do |card|
+      sum += value_calculator(card.value)
+    end
+    sum
+  end
+
+  private
+
+  def value_calculator(str)
+    if str.to_i != 0
+      card_value = str.to_i
+    else
+      case str.value
+      when "K"
+        card_value = 10
+      when "J"
+        card_value = 10
+      when "Q"
+        card_value = 10
+      when "A"
+        card_value = 11
+      end
+    end
+    card_value
   end
 end
-
 
 
 class Player
@@ -99,10 +122,15 @@ class Game
   def show_initial_cards
     player.playing_hand.each do |crd|
       puts "You have the #{card_converter(crd)[1]} of #{card_converter(crd)[0]}"
+      puts "Your card total is #{player.total}"
     end
   end
 
   def player_turn
+    loop do
+      puts "Do you want to hit or stay?"
+      answer = gets.chomp
+    end
   end
 
   def dealer_turn
@@ -114,7 +142,7 @@ class Game
   def start
     deal_cards
     show_initial_cards
-    player_turn # start here tomorrow
+    player_turn
     dealer_turn
     show_result
   end
