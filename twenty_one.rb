@@ -114,7 +114,7 @@ class Game
   def start
     deal_cards
     show_initial_cards
-    player_turn
+    player_turn # start here tomorrow
     dealer_turn
     show_result
   end
