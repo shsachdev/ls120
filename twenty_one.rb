@@ -34,8 +34,8 @@ end
 
 class Deck
   def initialize
-    # we need some data structure to keep track of cards.
-    # array, hash, something else?
+    cards = {}
+
   end
 
   def deal # in our game, the deck will deal cards.
@@ -44,12 +44,17 @@ class Deck
 end
 
 class Card
-  def initialize
-    # what are the states of a card?
+  attr_reader :number_value, :suite
+
+  def initialize(value, suite)
+    @number_value = value
+    @suite = suite
   end
 end
 
 class Game
+  attr_reader: player, dealer, deck
+
   def initialize
     @player = Player.new
     @dealer = Dealer.new
@@ -57,6 +62,19 @@ class Game
   end
 
   def deal_cards
+    deck.deal
+  end
+
+  def show_initial_cards
+  end
+
+  def player_turn
+  end
+
+  def dealer_turn
+  end
+
+  def show_result
   end
 
   def start
