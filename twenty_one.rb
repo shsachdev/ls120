@@ -29,37 +29,18 @@ class Dealer
   include Hand
 end
 
-# class Participant
-#   # what goes in here? all the redundant behaviors from Player and Dealer?
-# end
 
 class Deck
 
   SUITES = ["A", "H", "S", "C"]
   VALUES = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]
 
-
-  # Create an array of 52 elements, where each element is an object representing a card.
-  # This card has a value and a suite.
-
-  # Algorithm
-
-  # 1. Initialize a constant SUITES with all suites, represented as strings.
-  # 2. Initialize a constant VALUES with all card values, represent as both strings and integers.
-  # 3. For each suite, pass in the suite and all 12 values into deck_of_cards as an object.
-  # 4.
-
-  def helper(string, arr)
-    cards = []
-    arr.each do |num|
-      a = num.to_s + string
-      cards << a
-    end
-    cards
-  end
-
   def initialize
     @deck_of_cards = []
+    reset
+  end
+
+  def reset
     holder = []
     SUITES.each do |str|
       holder << helper(str, VALUES)
@@ -71,6 +52,16 @@ class Deck
 
   def deal # in our game, the deck will deal cards.
 
+  end
+
+  private
+
+  def helper(string, arr)
+    cards = []
+    arr.each do |num|
+      cards << num.to_s + string
+    end
+    cards
   end
 end
 
@@ -84,7 +75,6 @@ class Card
   end
 end
 
-Deck.new
 #
 # class Game
 #   attr_reader: player, dealer, deck
