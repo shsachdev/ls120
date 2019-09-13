@@ -21,8 +21,8 @@ module Hand
     sum = 0
     playing_hand.each_with_index do |card, index|
       if card.value == "A"
-        arr_without_ace = playing_hand.reject.with_index {|crd, idx| index == idx}
-  
+        arr_without_ace = playing_hand.reject.with_index {|elem, idx| idx == index}
+        p arr_without_ace.total
       else
         sum += value_calculator(card.value)
       end
@@ -49,21 +49,6 @@ module Hand
     end
     card_value
   end
-
-  def ace_value_calc(arr, idx)
-    arr_without_ace = playing_hand.reject.with_index {|card, index| index == idx}
-    ace_value = 0
-    if arr_without_ace.total <= 10
-      ace_value = 11
-    else
-      ace_value = 1
-    end
-    ace_value
-  end
-
-  # removes card object from arr, and assign this new array to the local variable new_arr
-  # calculates total of new_arr with 11 and with 1.
-  # assigns value to card that yields higher value to new_arr
 end
 
 
@@ -94,7 +79,11 @@ class Deck
       holder << helper(str, VALUES)
     end
     holder.flatten.each do |hand|
-      @cards << Card.new(hand.split("")[0],hand.split("")[1])
+      if hand.size == 2
+        @cards << Card.new(hand.split("")[0],hand.split("")[1])
+      else
+        @cards << Card.new(hand.split("")[0..1].join, hand.split("")[2])
+      end
     end
   end
 
@@ -163,6 +152,7 @@ class Game
   def start
     deal_cards
     show_initial_cards
+    binding.pry
     player_turn
     dealer_turn
     show_result
