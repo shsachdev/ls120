@@ -21,7 +21,8 @@ module Hand
     sum = 0
     playing_hand.each_with_index do |card, index|
       if card.value == "A"
-        sum += ace_value_calc(playing_hand, index)
+        arr_without_ace = playing_hand.reject.with_index {|crd, idx| index == idx}
+  
       else
         sum += value_calculator(card.value)
       end
