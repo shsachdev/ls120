@@ -22,7 +22,15 @@ module Hand
     playing_hand.each_with_index do |card, index|
       if card.value == "A"
         arr_without_ace = playing_hand.reject.with_index {|elem, idx| idx == index}
-        p arr_without_ace.total
+        sum_without_ace = 0
+        arr_without_ace.each do |elem|
+          sum_without_ace += value_calculator(elem.value)
+        end
+        if sum_without_ace <= 10
+          sum += 11
+        else
+          sum += 1
+        end
       else
         sum += value_calculator(card.value)
       end
@@ -152,7 +160,6 @@ class Game
   def start
     deal_cards
     show_initial_cards
-    binding.pry
     player_turn
     dealer_turn
     show_result
