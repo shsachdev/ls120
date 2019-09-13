@@ -152,11 +152,6 @@ class Game
       puts "Your card total is #{player.total}"
       break if player.busted?
     end
-    if player.busted?
-      puts "Bust! You lose."
-    else
-      puts "Your card total is #{player.total}"
-    end
   end
 
   def dealer_turn
@@ -167,8 +162,11 @@ class Game
   end
 
   def show_result
+    if player.busted?
+      puts "Bust! You lose."
+    end
     puts "Your card total is #{player.total}. The dealer's total is #{dealer.total}."
-    if dealer.total > player.total
+    if dealer.total > player.total && dealer.total <= 21
       puts "You lose!"
     elsif player.total > dealer.total
       puts "You win!"
@@ -190,11 +188,13 @@ class Game
 
   def start
     loop do
-      deal_cards
-      show_initial_cards
-      player_turn
-      break if player.busted?
-      dealer_turn
+      loop do
+        deal_cards
+        show_initial_cards
+        player_turn
+        break if player.busted?
+        dealer_turn
+      end
       show_result
       break unless play_again?
       deck.reset
