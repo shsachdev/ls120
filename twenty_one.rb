@@ -2,6 +2,7 @@ require "pry"
 
 module Hand
   attr_accessor :playing_hand
+  attr_reader :total
 
   def initialize
     @playing_hand = []
@@ -51,7 +52,7 @@ module Hand
   def ace_value_calc(arr, idx)
     arr_without_ace = playing_hand.reject.with_index {|card, index| index == idx}
     ace_value = 0
-    if total(arr_without_ace) <= 10
+    if arr_without_ace.total <= 10
       ace_value = 11
     else
       ace_value = 1
@@ -146,10 +147,10 @@ class Game
   end
 
   def player_turn
-    loop do
-      puts "Do you want to hit or stay?"
-      answer = gets.chomp
-    end
+    # loop do
+    #   puts "Do you want to hit or stay?"
+    #   answer = gets.chomp
+    # end
   end
 
   def dealer_turn
@@ -161,7 +162,6 @@ class Game
   def start
     deal_cards
     show_initial_cards
-    binding.pry
     player_turn
     dealer_turn
     show_result
