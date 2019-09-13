@@ -8,13 +8,6 @@ module Hand
     @playing_hand = []
   end
 
-  def hit
-
-  end
-
-  # def stay; I don't think I need this method for now.
-  # end
-
   def busted?
     player.total > 21
   end
@@ -139,6 +132,10 @@ class Game
     end
   end
 
+  def hit(participant)
+    participant << deck.deal
+  end
+
   def show_initial_cards
     player.playing_hand.each do |crd|
       puts "You have the #{card_converter(crd)[1]} of #{card_converter(crd)[0]}"
@@ -151,7 +148,7 @@ class Game
       puts "Do you want to hit or stay (h/s)?"
       answer = gets.chomp
       break if answer == "s"
-      player.hit
+      hit(player.playing_hand)
       break if player.busted?
     end
     if player.busted?
@@ -162,9 +159,30 @@ class Game
   end
 
   def dealer_turn
+    while dealer.playing_hand.total != 21 || dealer.total > player.total
+      hit(dealer.playing_hand)
+    end
   end
 
   def show_result
+    if dealer.total > player.total
+      puts "You lose!"
+    elsif player.total > dealer.total
+      puts "You win!"
+    else
+      puts "It's a tie!"
+    end
+  end
+
+  def play_again?
+    answer = nil
+    loop do
+      puts "Would you like to play again? (y/n)"
+      answer = gets.chomp.downcase
+      break if %w(y n).include?(answer)
+      puts "Sorry, must be y or n"
+    end
+    answer == "y"
   end
 
   def start
