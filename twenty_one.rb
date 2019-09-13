@@ -145,10 +145,10 @@ class Game
   end
 
   def player_turn
-    # loop do
-    #   puts "Do you want to hit or stay?"
-    #   answer = gets.chomp
-    # end
+    loop do
+      puts "Do you want to hit or stay?"
+      answer = gets.chomp
+    end
   end
 
   def dealer_turn
@@ -192,7 +192,7 @@ class Game
       when "Q"
         value_str = "Queen"
       when "A"
-        value_str = "Aces"
+        value_str = "Ace"
       end
     end
     arr = [suite_str, value_str]
