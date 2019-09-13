@@ -19,7 +19,11 @@ module Hand
   def total
     sum = 0
     playing_hand.each do |card|
-      sum += value_calculator(card.value)
+      if card.value == "A"
+        sum += ace_value_calculator(card.value)
+      else
+        sum += value_calculator(card.value)
+      end
     end
     sum
   end
