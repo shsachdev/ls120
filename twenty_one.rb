@@ -9,7 +9,7 @@ module Hand
   end
 
   def busted?
-    player.total > 21
+    total > 21
   end
 
   def total
@@ -77,6 +77,7 @@ class Deck
   end
 
   def reset
+    @cards = []
     holder = []
     SUITES.each do |str|
       holder << helper(str, VALUES)
@@ -149,22 +150,25 @@ class Game
       answer = gets.chomp
       break if answer == "s"
       hit(player.playing_hand)
+      puts "Your card total is #{player.total}"
       break if player.busted?
     end
     if player.busted?
       puts "Bust! You lose."
     else
-      "Your card total is #{player.total}"
+      puts "Your card total is #{player.total}"
     end
   end
 
   def dealer_turn
-    while dealer.playing_hand.total != 21 || dealer.total > player.total
+    loop do
+      break if dealer.total == 21 || dealer.total > player.total
       hit(dealer.playing_hand)
     end
   end
 
   def show_result
+    puts "Your card total is #{player.total}. The dealer's total is #{dealer.total}."
     if dealer.total > player.total
       puts "You lose!"
     elsif player.total > dealer.total
@@ -194,6 +198,9 @@ class Game
       dealer_turn
       show_result
       break unless play_again?
+      deck.reset # why is this not working?
+      binding.pry
+      puts "Let's play again!"
     end
     puts "Thanks for playing!"
   end
