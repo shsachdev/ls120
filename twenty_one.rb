@@ -11,8 +11,8 @@ module Hand
   def hit
   end
 
-  def stay
-  end
+  # def stay; I don't think I need this method for now.
+  # end
 
   def busted?
   end
@@ -146,8 +146,16 @@ class Game
 
   def player_turn
     loop do
-      puts "Do you want to hit or stay?"
+      puts "Do you want to hit or stay (h/s)?"
       answer = gets.chomp
+      break if answer == "s"
+      player.hit
+      break if player.busted?
+    end
+    if player.busted?
+      puts "Bust! You lose."
+    else
+      "Your card total is #{player.total}"
     end
   end
 
@@ -158,11 +166,16 @@ class Game
   end
 
   def start
-    deal_cards
-    show_initial_cards
-    player_turn
-    dealer_turn
-    show_result
+    loop do
+      deal_cards
+      show_initial_cards
+      player_turn
+      break if player.busted?
+      dealer_turn
+      show_result
+      break unless play_again?
+    end
+    puts "Thanks for playing!"
   end
 
   private
