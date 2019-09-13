@@ -9,12 +9,14 @@ module Hand
   end
 
   def hit
+
   end
 
   # def stay; I don't think I need this method for now.
   # end
 
   def busted?
+    player.total > 21
   end
 
   def total
