@@ -72,7 +72,6 @@ class Deck
   VALUES = [2, 3, 4, 5, 6, 7, 8, 9, 10, "J", "Q", "K", "A"]
 
   def initialize
-    @cards = []
     reset
   end
 
@@ -198,8 +197,7 @@ class Game
       dealer_turn
       show_result
       break unless play_again?
-      deck.reset # why is this not working?
-      binding.pry
+      deck.reset
       puts "Let's play again!"
     end
     puts "Thanks for playing!"
