@@ -4,6 +4,10 @@ module Hand
   attr_accessor :playing_hand
   attr_reader :total
 
+  def reset
+    @playing_hand = []
+  end
+
   def initialize
     @playing_hand = []
   end
@@ -149,8 +153,9 @@ class Game
       answer = gets.chomp
       break if answer == "s"
       hit(player.playing_hand)
-      puts "Your card total is #{player.total}"
       break if player.busted?
+      puts "Your card total is #{player.total}"
+      break if player.total == 21
     end
   end
 
@@ -162,13 +167,12 @@ class Game
   end
 
   def show_result
-    if player.busted?
-      puts "Bust! You lose."
-    end
     puts "Your card total is #{player.total}. The dealer's total is #{dealer.total}."
-    if dealer.total > player.total && dealer.total <= 21
+    if player.busted?
+      puts "Bust! You lose!"
+    elsif dealer.total > player.total && dealer.total <= 21
       puts "You lose!"
-    elsif player.total > dealer.total
+    elsif player.total > dealer.total || dealer.total > 21
       puts "You win!"
     else
       puts "It's a tie!"
@@ -194,10 +198,13 @@ class Game
         player_turn
         break if player.busted?
         dealer_turn
+        break
       end
       show_result
       break unless play_again?
       deck.reset
+      player.reset
+      dealer.reset
       puts "Let's play again!"
     end
     puts "Thanks for playing!"
