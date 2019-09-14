@@ -5,7 +5,7 @@ class CircularQueue
 
   def dequeue # to remove and return the oldest object in the queue.
     oldest_object = @arr.shift
-    @arr.unshift(nil)
+    @arr << nil
     oldest_object
   end
 
@@ -13,7 +13,8 @@ class CircularQueue
     if @arr.find_index(nil)
       @arr[@arr.find_index(nil)] = obj
     else
-      @arr[0] = obj
+      @arr.shift
+      @arr << obj
     end
   end
 end
