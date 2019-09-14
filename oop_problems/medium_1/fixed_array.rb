@@ -1,13 +1,15 @@
 class FixedArray
   def initialize(length)
     @length = length
+    to_a
   end
 
   def to_a
+    [nil] * @length
   end
 
   def []=
-    
+
   end
 end
 
