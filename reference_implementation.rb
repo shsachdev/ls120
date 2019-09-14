@@ -113,3 +113,65 @@ end
 
 class Participant
   include Hand
+
+  attr_accessor :name, :cards
+
+  def initialize
+    @cards = []
+    set_name
+  end
+end
+
+class Player < Participant
+  def set_name
+    name = ''
+    loop do
+      puts "What's your name?"
+      name = gets.chomp
+      break unless name.empty?
+      puts "Sorry, must enter a value."
+    end
+    self.name = name
+  end
+
+  def show_flop
+    show_hand
+  end
+end
+
+class Dealer < Participant
+  ROBOTS = ["R2D2", "Hal", "Chappie", "Sonny", "Number 5"]
+
+  def set_name
+    self.name = ROBOTS.sample
+  end
+
+  def show_flop
+    puts "---- #{name}'s Hand ----'"
+    puts "#{cards.first}"
+    puts " ?? "
+    puts " "
+  end
+end
+
+class TwentyOne
+  attr_accessor :deck, :player, :dealer
+
+  def initialize
+    @deck = Deck.new
+    @player = Player.new
+    @dealer = Dealer.new
+  end
+
+  def reset
+    self.deck = Deck.new
+    player.cards = []
+    dealer.cards = []
+  end
+
+  def deal_cards
+    2.times do
+      player.add_card
+    end
+  end
+end
