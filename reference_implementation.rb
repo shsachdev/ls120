@@ -171,7 +171,128 @@ class TwentyOne
 
   def deal_cards
     2.times do
-      player.add_card
+      player.add_card(deck.deal_one)
+      dealer.add_card(deck.deal_one)
     end
   end
+
+  def show_flop
+    player.show_flop
+    dealer.show_flop
+  end
+
+  def player_turn
+    puts "#{player.name}'s turn..."
+
+    loop do
+      puts "Would you like to hit or stay?"
+      answer = nil
+      loop do
+        answer = gets.chomp.downcase
+        break if ["h", "s"].include?(answer)
+        puts "Sorry, must enter 'h' or 's'"
+      end
+    if answer == "s"
+      puts "#{player.name} stays!"
+      break
+    elsif player.busted?
+      break
+    else
+      player.add_card(deck.deal_one)
+      puts "#{player.name} hits!"
+      player.show_hand
+      break if player.busted?
+    end
+  end
+
+  def dealer_turn
+    puts "#{dealer.name}'s turn..."
+
+    loop do
+      if dealer.total >= 17 && !dealer.busted?
+        puts "#{dealer.name} stays!"
+        break
+      elsif dealer.busted?
+        break
+      else
+        puts "#{dealer.name} hits!"
+        dealer.add_card(deck.deal_one)
+      end
+    end
+  end
+
+  def show_busted
+    if player.busted?
+      puts "It looks like #{player.name} busted! #{dealer.name} wins!"
+    elsif dealer.busted?
+      puts "It looks like #{dealer.name} busted! #{player.name} wins!"
+    end
+  end
+
+  def show_cards
+    player.show_hand
+    dealer.show_hand
+  end
+
+  def show_result
+    if player.total > dealer.total
+      puts "It looks like #{player.name} wins!"
+    elsif player.total < dealer.total
+      puts "It looks like #{dealer.name} wins!"
+    else
+      puts "It's a tie!"
+    end
+  end
+
+  def play_again?
+    answer = nil
+    loop do
+      puts "Would you like to play again? (y/n)"
+      answer = gets.chomp.downcase
+      break if ['y', 'n'].include? answer
+      puts "Sorry, must be y or n."
+    end
+
+    answer == 'y'
+  end
+
+  def start
+    loop do
+      system 'clear'
+      deal_cards
+      show_flop
+
+      player_turn
+      if player.busted?
+        show_busted
+        if play_again?
+          reset
+          next
+        else
+          break
+        end
+      end
+
+      dealer_turn
+      if dealer.busted?
+        show_busted
+        if play_again?
+          reset
+          next
+        else
+          break
+        end
+      end
+
+      # both stayed
+      show_cards
+      show_result
+      play_again? ? reset : break
+    end
+
+    puts "Thank you for playing Twenty-One. Goodbye!"
+  end
 end
+
+game = TwentyOne.new
+game.start
