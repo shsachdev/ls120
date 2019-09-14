@@ -47,3 +47,26 @@ class Card
     face == 'Jack'
   end
 end
+
+class Deck
+  attr_accessor :cards
+
+  def initialize # brand new deck of cards initialized.
+    @cards = []
+    Card::SUITS.each do |suit| # double iteration
+      Card::FACES.each do |face|
+        @cards << Card.new(suit, face)
+      end
+    end
+
+    scramble!
+  end
+
+  def scramble!
+    cards.shuffle!
+  end
+
+  def deal_one # interesting design type.
+    cards.pop
+  end
+end
