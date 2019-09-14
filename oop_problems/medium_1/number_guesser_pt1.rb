@@ -1,5 +1,5 @@
 class GuessingGame
-
+  RANGE = (1..100).to_a
   def initialize
     @num_of_guesses = 7
     @range = (1..100).to_a
@@ -31,7 +31,7 @@ class GuessingGame
       answer = nil
       loop do
         answer = gets.chomp.to_i
-        break if @range.include?(answer)
+        break if RANGE.include?(answer)
         puts "Invalid guess. Enter a number between 1 and 100: "
       end
       if correct_number?(answer)
