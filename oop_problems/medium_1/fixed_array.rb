@@ -1,15 +1,26 @@
 class FixedArray
+  attr_accessor :length, :arr
+
   def initialize(length)
     @length = length
-    to_a
+    @arr = [nil] * length
   end
 
   def to_a
-    [nil] * @length
+    @arr.clone
   end
 
-  def []=
+  def []idx
+    arr[idx]
+  end
 
+  def []=(idx, obj)
+    self[idx]
+    arr[idx] = obj
+  end
+
+  def to_s
+    arr.to_s
   end
 end
 
