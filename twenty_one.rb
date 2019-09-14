@@ -170,12 +170,14 @@ class Game
     puts "Your card total is #{player.total}."
     if player.busted?
       puts "Bust! You lose!"
-    puts "Your card total is #{player.total}. The dealer's total is #{dealer.total}."
     elsif dealer.total > player.total && dealer.total <= 21
+      puts "Your card total is #{player.total}. The dealer's total is #{dealer.total}."
       puts "You lose!"
     elsif player.total > dealer.total || dealer.total > 21
+      puts "Your card total is #{player.total}. The dealer's total is #{dealer.total}."
       puts "You win!"
     else
+      puts "Your card total is #{player.total}. The dealer's total is #{dealer.total}."
       puts "It's a tie!"
     end
   end
