@@ -51,5 +51,5 @@ class GuessingGame
 end
 
 
-game = GuessingGame.new
+game = GuessingGame.new(100,500)
 game.play
