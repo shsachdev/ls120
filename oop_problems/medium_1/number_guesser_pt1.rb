@@ -7,8 +7,7 @@ class GuessingGame
   end
 
   def correct_number?(num)
-    return false unless @number == num
-    true
+    @number == num
   end
 
   def hint(num)
