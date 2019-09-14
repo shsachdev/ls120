@@ -1,3 +1,23 @@
+class CircularQueue
+  def initialize(length)
+    @arr = [nil] * length
+  end
+
+  def dequeue # to remove and return the oldest object in the queue.
+    oldest_object = @arr.shift
+    @arr.unshift(nil)
+    oldest_object
+  end
+
+  def enqueue(obj) # add obj to empty spot, and if there are none, replace element at index 0 with obj
+    if @arr.find_index(nil)
+      @arr[@arr.find_index(nil)] = obj
+    else
+      @arr[0] = obj
+    end
+  end
+end
+
 queue = CircularQueue.new(3)
 puts queue.dequeue == nil
 
