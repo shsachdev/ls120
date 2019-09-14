@@ -101,4 +101,15 @@ module Hand
 
     total
   end
+
+  def add_card(new_card)
+    cards << new_card
+  end
+
+  def busted?
+    total > 21
+  end
 end
+
+class Participant
+  include Hand
