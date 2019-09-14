@@ -2,8 +2,8 @@ class GuessingGame
   def initialize(low_value, high_value)
     @low_value = low_value
     @high_value = high_value
-    @num_of_guesses = 7
     @range = (low_value..high_value).to_a
+    @num_of_guesses = Math.log2(@range.size).to_i + 1
     @number = @range.sample
   end
 
