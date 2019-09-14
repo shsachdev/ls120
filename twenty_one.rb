@@ -167,9 +167,10 @@ class Game
   end
 
   def show_result
-    puts "Your card total is #{player.total}. The dealer's total is #{dealer.total}."
+    puts "Your card total is #{player.total}."
     if player.busted?
       puts "Bust! You lose!"
+    puts "Your card total is #{player.total}. The dealer's total is #{dealer.total}."
     elsif dealer.total > player.total && dealer.total <= 21
       puts "You lose!"
     elsif player.total > dealer.total || dealer.total > 21
