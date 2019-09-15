@@ -1,5 +1,9 @@
 class Card
+  include Comparable
   attr_reader :rank, :suit
+
+  VALUES = { 'Jack' => 11, 'Queen' => 12, 'King' => 13, 'Ace' => 14 }
+
 
   def initialize(rank, suit)
     @rank = rank
@@ -10,27 +14,12 @@ class Card
     "#{rank} of #{suit}"
   end
 
-  def min
-    arr = self.map do |elem|
-      value(elem.rank)
-    end
-    self[arr.get_index(arr.min)]
+  def value
+    VALUES.fetch(rank, rank)
   end
 
-  private
-
-  def value(crd)
-    if crd.to_i != 0
-      crd
-    elsif crd == "Jack"
-      11
-    elsif crd == "Queen"
-      12
-    elsif crd == "King"
-      13
-    elsif crd == "Ace"
-      14
-    end
+  def <=>(other_card)
+    value <=> other_card.value
   end
 end
 
@@ -39,7 +28,8 @@ cards = [Card.new(2, 'Hearts'),
          Card.new(10, 'Diamonds'),
          Card.new('Ace', 'Clubs')]
 puts cards
-puts cards.min
+# puts cards
+# puts cards.min
 # puts cards.min == Card.new(2, 'Hearts')
 # puts cards.max == Card.new('Ace', 'Clubs')
 #
