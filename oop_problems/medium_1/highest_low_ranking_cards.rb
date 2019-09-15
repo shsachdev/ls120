@@ -14,10 +14,7 @@ class Card
     arr = self.map do |elem|
       value(elem.rank)
     end
-    arr.min
-  end
-
-  def max
+    self[arr.get_index(arr.min)]
   end
 
   private
@@ -42,7 +39,8 @@ cards = [Card.new(2, 'Hearts'),
          Card.new(10, 'Diamonds'),
          Card.new('Ace', 'Clubs')]
 puts cards
-puts cards.min == Card.new(2, 'Hearts')
+puts cards.min
+# puts cards.min == Card.new(2, 'Hearts')
 # puts cards.max == Card.new('Ace', 'Clubs')
 #
 # cards = [Card.new(5, 'Hearts')]
