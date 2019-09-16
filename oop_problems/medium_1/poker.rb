@@ -1,6 +1,6 @@
 class Card
   include Comparable
-  attr_reader :rank, :suit, :value
+  attr_reader :rank, :suit
 
   VALUES = { 'Jack' => 11, 'Queen' => 12, 'King' => 13, 'Ace' => 14 }
 
@@ -47,6 +47,8 @@ class Deck
 end
 
 class PokerHand
+  attr_reader :cards
+
   def initialize(deck)
     @cards = []
     5.times do
@@ -83,15 +85,9 @@ class PokerHand
     checker_1 = []
     checker_2 = []
     @cards.each do |card|
-      # checker_1 << card.value
-      if card.value.to_i == 0
-        checker_1 << card.value
-      else
-        checker_1 << card.rank
-      end
+      checker_1 << card.value
       checker_2 << card.suit
     end
-    p checker_1
     checker_1.sort == [10,11,12,13,14] && checker_2.uniq.size == 1
   end
 
@@ -106,17 +102,25 @@ class PokerHand
   end
 
   def four_of_a_kind?
-    checker_1 = @cards.map do |card|
-      @cards.count(card)
+    checker_1 = []
+    @cards.each do |card|
+      checker_1 << card.value
     end
-    checker_1.include?(4)
+    arr = checker_1.map do |value|
+      checker_1.count(value)
+    end
+    arr.include?(4)
   end
 
   def full_house?
-    checker_1 = @cards.map do |card|
-      @cards.count(card.value)
+    checker_1 = []
+    @cards.each do |card|
+      checker_1 << card.value
     end
-    checker_1.sort == [2,2,2,3,3]
+    arr = checker_1.map do |value|
+      checker_1.count(value)
+    end
+    arr.sort == [2,2,3,3,3]
   end
 
   def flush?
@@ -153,34 +157,35 @@ hand = PokerHand.new([
   Card.new('King',  'Hearts'),
   Card.new('Jack',  'Hearts')
 ])
+
 puts hand.evaluate == 'Royal flush'
 
-# hand = PokerHand.new([
-#   Card.new(8,       'Clubs'),
-#   Card.new(9,       'Clubs'),
-#   Card.new('Queen', 'Clubs'),
-#   Card.new(10,      'Clubs'),
-#   Card.new('Jack',  'Clubs')
-# ])
-# puts hand.evaluate == 'Straight flush'
-#
-# hand = PokerHand.new([
-#   Card.new(3, 'Hearts'),
-#   Card.new(3, 'Clubs'),
-#   Card.new(5, 'Diamonds'),
-#   Card.new(3, 'Spades'),
-#   Card.new(3, 'Diamonds')
-# ])
-# puts hand.evaluate == 'Four of a kind'
-#
-# hand = PokerHand.new([
-#   Card.new(3, 'Hearts'),
-#   Card.new(3, 'Clubs'),
-#   Card.new(5, 'Diamonds'),
-#   Card.new(3, 'Spades'),
-#   Card.new(5, 'Hearts')
-# ])
-# puts hand.evaluate == 'Full house'
+hand = PokerHand.new([
+  Card.new(8,       'Clubs'),
+  Card.new(9,       'Clubs'),
+  Card.new('Queen', 'Clubs'),
+  Card.new(10,      'Clubs'),
+  Card.new('Jack',  'Clubs')
+])
+puts hand.evaluate == 'Straight flush'
+
+hand = PokerHand.new([
+  Card.new(3, 'Hearts'),
+  Card.new(3, 'Clubs'),
+  Card.new(5, 'Diamonds'),
+  Card.new(3, 'Spades'),
+  Card.new(3, 'Diamonds')
+])
+puts hand.evaluate == 'Four of a kind'
+
+hand = PokerHand.new([
+  Card.new(3, 'Hearts'),
+  Card.new(3, 'Clubs'),
+  Card.new(5, 'Diamonds'),
+  Card.new(3, 'Spades'),
+  Card.new(5, 'Hearts')
+])
+puts hand.evaluate == 'Full house'
 
 # hand = PokerHand.new([
 #   Card.new(10, 'Hearts'),
