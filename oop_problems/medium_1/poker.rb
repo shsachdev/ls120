@@ -80,22 +80,43 @@ class PokerHand
   private
 
   def royal_flush?
-    checker = []
+    checker_1 = []
     checker_2 = []
     @cards.each do |card|
-      checker << card.value
+      # checker_1 << card.value
+      if card.value.to_i == 0
+        checker_1 << card.value
+      else
+        checker_1 << card.rank
+      end
       checker_2 << card.suit
     end
-    checker.sort == [10,11,12,13,14] && checker_2.uniq.size == 1
+    p checker_1
+    checker_1.sort == [10,11,12,13,14] && checker_2.uniq.size == 1
   end
 
   def straight_flush?
+    checker_1 = []
+    checker_2 = []
+    @cards.each do |card|
+      checker_1 << card.value
+      checker_2 << card.suit
+    end
+    checker_1.sort == [8,9,10,11,12] && checker_2.uniq.size == 1
   end
 
   def four_of_a_kind?
+    checker_1 = @cards.map do |card|
+      @cards.count(card)
+    end
+    checker_1.include?(4)
   end
 
   def full_house?
+    checker_1 = @cards.map do |card|
+      @cards.count(card.value)
+    end
+    checker_1.sort == [2,2,2,3,3]
   end
 
   def flush?
@@ -133,7 +154,7 @@ hand = PokerHand.new([
   Card.new('Jack',  'Hearts')
 ])
 puts hand.evaluate == 'Royal flush'
-#
+
 # hand = PokerHand.new([
 #   Card.new(8,       'Clubs'),
 #   Card.new(9,       'Clubs'),
@@ -160,7 +181,7 @@ puts hand.evaluate == 'Royal flush'
 #   Card.new(5, 'Hearts')
 # ])
 # puts hand.evaluate == 'Full house'
-#
+
 # hand = PokerHand.new([
 #   Card.new(10, 'Hearts'),
 #   Card.new('Ace', 'Hearts'),
