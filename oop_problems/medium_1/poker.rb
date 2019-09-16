@@ -81,12 +81,13 @@ class PokerHand
 
   private
 
-  def are_they_continous?(arr)
-    results = arr.sort.map.with_index do |elem, index|
+  def are_they_continuous?(arr)
+    sorted = arr.sort
+    results = sorted.map.with_index do |elem, index|
       if index == arr.size - 1
         1
       else
-        arr[index + 1] - elem
+        sorted[index + 1] - elem
       end
     end
     results == [1,1,1,1,1]
@@ -113,7 +114,7 @@ class PokerHand
       checker_1 << card.value
       checker_2 << card.suit
     end
-    checker_1.sort ==  && checker_2.uniq.size == 1
+    are_they_continuous?(checker_1) && checker_2.uniq.size == 1
   end
 
   def four_of_a_kind?
@@ -147,15 +148,44 @@ class PokerHand
   end
 
   def straight?
+    checker_1 = []
+    @cards.each do |card|
+      checker_1 << card.value
+    end
+    are_they_continuous?(checker_1)
   end
 
   def three_of_a_kind?
+    checker_1 = []
+    @cards.each do |card|
+      checker_1 << card.value
+    end
+    arr = checker_1.map do |value|
+      checker_1.count(value)
+    end
+    arr.include?(3)
   end
 
   def two_pair?
+    checker_1 = []
+    @cards.each do |card|
+      checker_1 << card.value
+    end
+    arr = checker_1.map do |value|
+      checker_1.count(value)
+    end
+    arr.count(2) == 4
   end
 
   def pair?
+    checker_1 = []
+    @cards.each do |card|
+      checker_1 << card.value
+    end
+    arr = checker_1.map do |value|
+      checker_1.count(value)
+    end
+    arr.count(2) == 2
   end
 end
 
@@ -169,7 +199,6 @@ class Array
   alias_method :draw, :pop
 end
 
-# Test that we can identify each PokerHand type.
 hand = PokerHand.new([
   Card.new(10,      'Hearts'),
   Card.new('Ace',   'Hearts'),
