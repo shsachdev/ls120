@@ -81,6 +81,17 @@ class PokerHand
 
   private
 
+  def are_they_continous?(arr)
+    results = arr.sort.map.with_index do |elem, index|
+      if index == arr.size - 1
+        1
+      else
+        arr[index + 1] - elem
+      end
+    end
+    results == [1,1,1,1,1]
+  end
+
   def royal_flush?
     checker_1 = []
     checker_2 = []
@@ -91,6 +102,10 @@ class PokerHand
     checker_1.sort == [10,11,12,13,14] && checker_2.uniq.size == 1
   end
 
+  # arr[3,4,5,6,7] => true
+  # arr[3,4,7,8,9] => false
+
+
   def straight_flush?
     checker_1 = []
     checker_2 = []
@@ -98,7 +113,7 @@ class PokerHand
       checker_1 << card.value
       checker_2 << card.suit
     end
-    checker_1.sort == [8,9,10,11,12] && checker_2.uniq.size == 1
+    checker_1.sort ==  && checker_2.uniq.size == 1
   end
 
   def four_of_a_kind?
