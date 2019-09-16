@@ -10,6 +10,12 @@ class Library
   def check_in(book)
     books.push(book)
   end
+
+  def display_books
+    books.each do |book|
+      book.display_data
+    end
+  end
 end
 
 class Book
@@ -39,4 +45,4 @@ community_library.check_in(learn_to_program)
 community_library.check_in(little_women)
 community_library.check_in(wrinkle_in_time)
 
-community_library.books.display_data
+community_library.display_books
