@@ -1,4 +1,5 @@
 class File
+  FORMAT = ""
   attr_accessor :name, :byte_content
 
   def initialize(name)
