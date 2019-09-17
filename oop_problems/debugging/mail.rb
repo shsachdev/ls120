@@ -70,6 +70,7 @@ class TelephoneService < CommunicationsProvider
 end
 
 class PostalService < CommunicationsProvider
+  include Mailing # to prevent accidental method overriding
   attr_accessor :street_address, :mailbox
 
   def initialize(name, street_address)
