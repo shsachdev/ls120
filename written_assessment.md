@@ -15,4 +15,17 @@ Some specifics to keep in mind (and to study for):
 - Reading OO Code
 - Fake operators and equality
 - Truthiness
-- Working with collaborator objects 
+- Working with collaborator objects
+
+Self is an important concept.
+
+We use self to specify a certain scope for our program. Self can refer to different things
+depending on where it is used.
+
+So far, 2 clear uses for Self:
+
+1. Use self when calling setter methods from within the class. In our earlier example
+we showed that self was necessary in order for our change_info method to work properly.
+We had to use self to allow Ruby to disambiguate between a local variable and calling a setter method.
+
+2. Use self for class method definitions.
