@@ -29,3 +29,11 @@ we showed that self was necessary in order for our change_info method to work pr
 We had to use self to allow Ruby to disambiguate between a local variable and calling a setter method.
 
 2. Use self for class method definitions.
+
+So just to be clear, from within a class...
+
+self, inside of an instance method, references the instance (object) that called the method - the calling object.
+Therefore, self.weight= is the same as sparky.weight=, in our example.
+
+self, outside of an instance method, references the class and can be used to define class methods.
+Therefore, def self.name=(n) is the same as def GoodDog.name=(n), in our example.
