@@ -50,4 +50,10 @@ Instance methods pertain to an instance or object of the class.
 Class methods are where we put functionality that does not pertain to individual objects.
 
 Objects contain state and if we have a method that does not need to deal with state, then
-we can just use a class method. 
+we can just use a class method.
+
+Inheritance
+
+Inheritance is when a class inherits behavior from another class. The class that is
+inheriting behavior is called the subclass and the class it inherits from is called
+the superclass.
