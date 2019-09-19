@@ -42,4 +42,12 @@ Super
 
 Ruby provides us with a built-in function called super that allows us to call methods
 up the inheritance hierarchy. When you call super from within a method, it will search
-the inheritance hierarchy for a method by the same name and then invoke it. 
+the inheritance hierarchy for a method by the same name and then invoke it.
+
+Difference between Class Methods and Instance Methods
+
+Instance methods pertain to an instance or object of the class.
+Class methods are where we put functionality that does not pertain to individual objects.
+
+Objects contain state and if we have a method that does not need to deal with state, then
+we can just use a class method. 
