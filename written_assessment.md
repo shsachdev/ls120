@@ -37,3 +37,9 @@ Therefore, self.weight= is the same as sparky.weight=, in our example.
 
 self, outside of an instance method, references the class and can be used to define class methods.
 Therefore, def self.name=(n) is the same as def GoodDog.name=(n), in our example.
+
+Super
+
+Ruby provides us with a built-in function called super that allows us to call methods
+up the inheritance hierarchy. When you call super from within a method, it will search
+the inheritance hierarchy for a method by the same name and then invoke it. 
