@@ -16,3 +16,5 @@ bob = Person.new("Bob", 49)
 kim = Person.new("Kim", 33)
 
 puts "bob is older than kim" if bob > kim
+
+puts "bob is older" if bob.>(kim)
