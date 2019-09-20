@@ -13,6 +13,14 @@ class Team
   def +(other_team)
     members + other_team.members
   end
+
+  def [](idx)
+    members[idx]
+  end
+
+  def []=(idx, obj)
+    members[idx] = obj
+  end
 end
 
 cowboys = Team.new("Dallas Cowboys")
