@@ -25,7 +25,7 @@ class Animal
 end
 
 class GoodDog < Animal
-  include Swimmable
+  include Swimmable # this example demonstrates module lookup path and hierarchy
   include Climbable
 end
 
