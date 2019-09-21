@@ -1,6 +1,6 @@
 class GiftCard
   attr_reader :balance
-  attr_writer :balance
+  # attr_writer :balance
 
   def initialize(initial_balance)
     @balance = initial_balance
@@ -15,10 +15,12 @@ class GiftCard
   end
 
 
-  private
-  attr_writer :balance
+  # private
+  # attr_writer :balance
 end
 
 macys_card = GiftCard.new(100)
 
-puts macys_card
+macys_card.swipe(20)
+
+puts macys_card.balance
