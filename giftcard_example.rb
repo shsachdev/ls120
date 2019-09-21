@@ -11,7 +11,7 @@ class GiftCard
   end
 
   def to_s
-    puts "The balance of this card is #{balance} dollars"
+    "The balance of this card is #{balance} dollars"
   end
 
 
