@@ -13,8 +13,6 @@ class GiftCard
   def to_s
     "The balance of this card is #{balance} dollars"
   end
-
-
   # private
   # attr_writer :balance
 end
