@@ -28,5 +28,5 @@
 # Protected methods are very similar to private methods. The main difference between them is protected
 # methods allow access between class instances, while private methods don't.
 
-# When a method is private, only the class - not instances of the class - can access it.
+# When a method is private, only other methods in the class - not instances of the class - can access it.
 # However, when a method is protected, only instances of the class or a subclass can call the method.
