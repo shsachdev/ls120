@@ -12,6 +12,7 @@ class Dog
   end
 
   def feed
+    @food_bowl["bones"] -= 3
     puts "Here is a bone for you"
     @appetite -= 5
     refill
@@ -32,8 +33,12 @@ end
 
 fido = Dog.new("fido jones")
 
-puts fido.appetite
+puts "Originally, Fido's appetite was a #{fido.appetite} out of 10."
+
+fido.feed
+
+puts "However, after eating food, his appetite is a #{fido.appetite} out of 10."
 
 puts fido.food_bowl
 
-puts fido.name
+puts fido.refill # private method "refill" called for  #<Dog:0x007fa5de862d70>
