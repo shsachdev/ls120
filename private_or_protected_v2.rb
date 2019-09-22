@@ -19,7 +19,7 @@ class Dog
   end
 
   def has_more_food_than?(other_dog)
-    amount_of_food > other_dog.amount_of_food
+    amount_of_food == other_dog.amount_of_food
   end
 
   protected
@@ -42,7 +42,5 @@ end
 fido = Dog.new("fido jones")
 
 larry = Dog.new("larry")
-
-fido.feed
 
 puts fido.has_more_food_than?(larry)
