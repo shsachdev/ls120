@@ -58,4 +58,12 @@ Inheritance is when a class inherits behavior from another class. The class that
 inheriting behavior is called the subclass and the class it inherits from is called
 the superclass.
 
-Today is assessment day. 
+Today is assessment day.
+
+Applying backticks to a block of ruby code looks like the following:
+
+```ruby
+array.map do |element|
+  element.massage
+end
+```
