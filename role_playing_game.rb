@@ -8,7 +8,6 @@ end
 
 module Spell
   def cast_spell(spell)
-    puts spell
   end
 end
 
@@ -42,10 +41,6 @@ class Player
   end
 
 
-  protected
-
-  attr_writer :strength_value, :intelligence_value
-
   private
 
   def roll_dice(num1, num2)
@@ -55,7 +50,7 @@ end
 
 class Warrior < Player
   include Armor
-  def initialize
+  def initialize(n)
     super(n)
     @strength_value = roll_dice(4,14)
   end
@@ -68,7 +63,7 @@ end
 
 class Magician < Player
   include Spell
-  def initialize
+  def initialize(n)
     super(n)
     @intelligence_value = roll_dice(4,14)
   end
@@ -80,3 +75,12 @@ class Bard < Player
   def create_potion
   end
 end
+
+rob = Magician.new("Rob")
+
+puts rob.intelligence_value
+
+joe = Warrior.new("Joe")
+
+puts joe.strength_value
+puts joe.intelligence_value
