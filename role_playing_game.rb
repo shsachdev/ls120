@@ -76,12 +76,10 @@ class Bard < Player
   end
 end
 
-rob = Magician.new("Rob")
 
-puts rob.intelligence_value
 
 joe = Warrior.new("Joe")
 
-puts joe.strength_value
-puts joe.name
-puts joe.intelligence_value
+puts joe.health_value
+joe.hurt(50)
+puts joe.health_value
