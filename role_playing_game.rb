@@ -83,4 +83,5 @@ puts rob.intelligence_value
 joe = Warrior.new("Joe")
 
 puts joe.strength_value
+puts joe.name
 puts joe.intelligence_value
