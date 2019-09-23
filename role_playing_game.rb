@@ -1,7 +1,25 @@
+module Armor
+  def attach_armor
+  end
+
+  def remove_armor
+  end
+end
+
+module Spell
+  def cast_spell(spell)
+    puts spell
+  end
+end
+
+
+
 class Player
   attr_reader :health_value, :strength_value, :intelligence_value
+  attr_accessor :name
 
-  def initialize
+  def initialize(n)
+    @name = n
     @health_value = 100
     @strength_value = roll_dice(2,12)
     @intelligence_value = roll_dice(2,12)
@@ -15,6 +33,15 @@ class Player
     @health_value -= num
   end
 
+  def to_s
+    puts "Name: #{name}"
+    puts "Class: #{self.class}"
+    puts "Health: #{health_value}"
+    puts "Strength: #{strength_value}"
+    puts "Intelligence: #{intelligence_value}"
+  end
+
+
   protected
 
   attr_writer :strength_value, :intelligence_value
@@ -23,5 +50,33 @@ class Player
 
   def roll_dice(num1, num2)
     rand(num1..num2)
+  end
+end
+
+class Warrior < Player
+  include Armor
+  def initialize
+    super(n)
+    @strength_value = roll_dice(4,14)
+  end
+end
+
+class Paladin < Player
+  include Armor
+  include Spell
+end
+
+class Magician < Player
+  include Spell
+  def initialize
+    super(n)
+    @intelligence_value = roll_dice(4,14)
+  end
+end
+
+class Bard < Player
+  include Spell
+
+  def create_potion
   end
 end
