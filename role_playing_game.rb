@@ -69,10 +69,10 @@ class Magician < Player
   end
 end
 
-class Bard < Player
-  include Spell
+class Bard < Magician
 
   def create_potion
+
   end
 end
 
