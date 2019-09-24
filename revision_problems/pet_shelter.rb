@@ -1,4 +1,6 @@
 class Pet
+  attr_reader :animal, :name
+
   def initialize(animal, name)
     @animal = animal
     @name = name
@@ -6,28 +8,38 @@ class Pet
 end
 
 class Owner
+  attr_accessor :name, :number_of_pets
+
   def initialize(name)
     @name = name
+    @number_of_pets = 0
   end
 end
 
 class Shelter
+
   def initialize
     @adoptions = {}
   end
 
   def adopt(owner, pet)
-    @owner = owner
-    @pet = pet
+    owner.number_of_pets += 1
+    if @adoptions.include?(owner.name)
+      @adoptions[owner.name] << [pet.animal, pet.name]
+    else
+      @adoptions[owner.name] = [[pet.animal,pet.name]]
+    end
   end
 
+  def print_adoptions
+    @adoptions.each do |owner, pet_info|
+      puts "#{owner} has adopted the following pets:"
+        pet_info.each do |animal, name|
+          puts "A #{animal} named #{name}"
+        end
+    end
+  end
 end
-
-
-
-
-
-
 
 
 butterscotch = Pet.new('cat', 'Butterscotch')
