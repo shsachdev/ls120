@@ -1,14 +1,24 @@
 class FixedArray
+  attr_accessor :array
+
   def initialize(places)
-    array = [nil] * places
+    @array = [nil] * places
   end
 
   def [](idx)
-    array[idx]
+    @array[idx]
   end
 
   def []=(idx, obj)
-    array[idx] = obj
+    @array[idx] = obj
+  end
+
+  def to_s
+    @array.to_s
+  end
+
+  def to_a
+    @array
   end
 end
 
