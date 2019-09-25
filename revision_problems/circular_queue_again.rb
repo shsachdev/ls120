@@ -14,6 +14,7 @@ class CircularQueue
   end
 
   def dequeue(num)
-    @arr[0] = nil
+    @arr << nil
+    @arr.shift  
   end
 end
