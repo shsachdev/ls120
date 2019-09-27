@@ -28,3 +28,7 @@ end
 # of behaviors that is usable in other classes via mixins.
 
 # A module is "mixed in" to a class using the include method invocation.
+
+# Modules have multiple usecases, including namespacing.
+
+# Namespacing means organizing similar classes under a module.
