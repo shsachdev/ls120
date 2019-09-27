@@ -21,3 +21,18 @@ kitty = Mammal::Cat.new
 buddy.speak("Arf!")
 
 kitty.say_name("kitty")
+
+# The second use case for modules we'll look at is using modules as a container
+# for methods, called module methods. This involves using modules to house
+# other methods.
+
+module Mammal
+
+  ...
+
+  def self.some_out_of_place_method(num)
+    num ** 2
+  end
+end
+
+value = Mammal.some_out_of_place_method(4)
