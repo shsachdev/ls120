@@ -34,13 +34,13 @@ end
 
 # Test
 
-blog_post = MarkDownFile.new("Adventures_in_OOP_Land")
+blog_post = MarkdownFile.new("Adventures_in_OOP_Land")
 
 blog_post.write("Content will be added soon!".bytes)
 
 copy_of_blog_post = blog_post.copy("Same_Adventures_in_OOP_Land")
 
-puts copy_of_blog_post.is_a? MarkDownFile # True
+puts copy_of_blog_post.is_a? MarkdownFile # True
 puts copy_of_blog_post.read == blog_post.read
 
 puts blog_post
