@@ -52,4 +52,4 @@ puts ada.location == grace.location # expected: true
 
 # In order to compare the equality of instances of our custom class based on the value of their attributes,
 # we need to define a == method in our custom class, which overrides BasicObject#==. GeoLocation#== does
-# exactly that: it compares two locations based on their latitude and longitude values. 
+# exactly that: it compares two locations based on their latitude and longitude values.
