@@ -19,9 +19,14 @@ class GeoLocation
     @longitude = longitude
   end
 
+  def ==(other)
+    @latitude == other.latitude && @longitude == other.longitude
+  end
+
   def to_s
     "(#{latitude}, #{longitude})"
   end
+
 end
 
 # Example
@@ -38,3 +43,13 @@ puts ada.location                   # (-33.89, 151.277)
 puts grace.location                 # (-33.89, 151.277)
 puts ada.location == grace.location # expected: true
                                     # actual: false
+
+# On line 39 of our original code, we invoke the == method to compare the equality
+# of two locations. Since our GeoLocation class does not implement ==, Ruby invokes
+# the method from the BasicObject class. BasicObject#==, however, returns true
+# only if the two objects being compared are the same object, or in other words, if they
+# have the same object id.
+
+# In order to compare the equality of instances of our custom class based on the value of their attributes,
+# we need to define a == method in our custom class, which overrides BasicObject#==. GeoLocation#== does
+# exactly that: it compares two locations based on their latitude and longitude values. 
