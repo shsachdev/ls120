@@ -34,7 +34,7 @@ end
 
 class SongBird < Bird
   def initialize(diet, superpower, song)
-    super
+    super(diet, superpower)
     @song = song
   end
 
