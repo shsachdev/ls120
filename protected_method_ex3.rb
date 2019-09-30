@@ -17,3 +17,7 @@ end
 fido = Animal.new
 
 fido.a_public_method # => Will this work? Yes, I'm protected!
+
+# but outside, the class:
+
+fido.a_protected_method # but cannot be called directly from outside the class.
