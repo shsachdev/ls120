@@ -37,3 +37,7 @@ bob.pets << kitty
 bob.pets << bud
 
 bob.pets
+
+bob.pets.each do |pet|
+  pet.jump
+end
