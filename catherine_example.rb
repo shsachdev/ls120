@@ -1,22 +1,22 @@
 class Animal
   def fido
-    self.age
+    self
   end
 end
 
 class Dog < Animal
-  attr_writer :age
+  attr_accessor :age, :name
 
   def initialize(n, a)
     @name = n
     @age = a
   end
 
-  def age
-    fido
+  def info
+    puts "My name is #{name} and my age is #{fido.age}"
   end
 end
 
 fido = Dog.new("fido", 12)
 
-puts fido.age  # what do we get outputted on line 19?
+fido.info  # => My name is fido and my age is 12.
